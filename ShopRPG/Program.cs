@@ -12,8 +12,8 @@ namespace ShopRPG
         public static Random random = new Random();
         static void Main(string[] args)
         {                                                                                                                                           //static void Main Bracket
-            string playerSave = "playerSave.txt";
-            string shopSave = "shopSave.txt";
+            string playerSave = "playerSave.txt";               // Player Inventory Save File
+            string shopSave = "shopSave.txt";                   // Shop Inventory Save File
 
             int playerFunds = 0;
             int storeFunds = 0;
@@ -24,7 +24,7 @@ namespace ShopRPG
             string choice = "";
             while (choice != "Q")
             {
-                Console.WriteLine("Hello there.\n1.) Inventory \n2.) Shop \nQ.) Quit");
+                Console.WriteLine("Hello there.\n1.) Inventory \n2.) Shop \n3.) Save \n4.) Load \nQ.) Quit");
                 choice = Console.ReadLine();
 
             }

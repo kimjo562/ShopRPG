@@ -8,9 +8,20 @@ namespace ShopRPG
 {
     class WeaponItem : AllItem
     {
-        public WeaponItem(string newName)
+        private int _damage;
+        public int Damage                           // How much Attack Items Damage do
         {
-            _name = newName;
+            get
+            {
+                return _damage;
+            }
+        }
+        public WeaponItem(string newName, int _weaponDamage, int price, string description)
+        {
+            _name = newName;                        // Name of the Weapon
+            _damage = _weaponDamage;                // Damage it can do
+            _cost = price;                          // The Price of the Weapon
+            _description = description;             // The Description of said attack itme.
 
         }
 
