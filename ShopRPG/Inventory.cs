@@ -19,7 +19,8 @@ namespace ShopRPG
             {
                 // Display Menu
                 Console.WriteLine("Player Inventory Menu");
-                Console.WriteLine("Player Funds: " + playerFunds + "    Potions Held: "/* + _potionHeld*/);
+                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("Player Funds: " + playerFunds + "              Potions Held: "/* + _potionHeld*/);
                 Console.WriteLine("1.) See Weapon Gear \n2.) See Armor Gear \nQ.) Quit");
 
                 //Get input
@@ -30,12 +31,10 @@ namespace ShopRPG
                 if (choice == "1")
                 {
                     // Print the Player's Weapons being stored here.
-
                 }
                 else if (choice == "2")
                 {
                     // Print the Player's Armor being Stored here.
-
                 }
 
             }
@@ -44,7 +43,7 @@ namespace ShopRPG
 
         public void PrintWeapons()
         {
-            for(int i = 0; i < )
+      //      for(int i = 0; i < )
 
 
         }

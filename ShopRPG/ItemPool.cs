@@ -45,29 +45,27 @@ namespace ShopRPG
             newList[newList.Length - 1] = value;
             // Sets the current array to the new array
             _list = newList;
-
         }
 
         public virtual void Remove(int index)
         {
             // Create a new array if Length - 1
             object[] newList = new object[_list.Length - 1];
-            int noStack = 0;
+            int newPosition = 0;                                                            // Puts it into the new position (newlist array and list array)
             // Put the values of the old array into the new array
             for (int i = 0; i < _list.Length; i++)
             {
                 if (i != index)
                 {
-                    newList[noStack] = _list[i];
-                    noStack++;
+                    newList[newPosition] = _list[i];
+                    newPosition++;
                 }
-
             }
             //Set the current array to the new array
             _list = newList;
-
         }
-
-
     }
 }
+
+
+

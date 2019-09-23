@@ -44,6 +44,25 @@ namespace ShopRPG
                 {
 
                 }
+                else if (choice == "iamthegoldman")
+                {
+                    Console.WriteLine("Debug Mode Activated");
+                    choice = Console.ReadLine();
+                    if (choice == "addweapon")
+                    {
+                        
+
+                    }
+                    else if(choice == "addarmor")
+                    {
+
+
+                    }
+                    else if(choice == "back")
+                    {
+
+                    }
+                }
             }
 
             Console.ReadKey();

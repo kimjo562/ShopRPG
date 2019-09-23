@@ -18,6 +18,7 @@ namespace ShopRPG
             {
                 // Display Menu
                 Console.WriteLine("Shop Menu");
+                Console.WriteLine("------------------------------------------------");
                 Console.WriteLine("Store Funds: " + storeFunds);
                 Console.WriteLine("1.) Buy Items \n2.) Sell Items \n3.) Inspect Items \nQ.) Quit");
 
