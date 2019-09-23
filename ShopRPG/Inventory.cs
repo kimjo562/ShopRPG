@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Inventory
+    class Inventory 
     {
         int storeFunds = 0;
         int playerFunds = 0;
@@ -44,7 +44,7 @@ namespace ShopRPG
 
         public void PrintWeapons()
         {
-
+            for(int i = 0; i < )
 
 
         }

@@ -17,13 +17,14 @@ namespace ShopRPG
             _description = description;             // The Description of said attack itme.
 
         }
-
-        public int GetDamage                           // How much Attack Items Damage do
+        public string GetName()
         {
-            get
-            {
-                return _damage;
-            }
+            return _name;
+        }
+
+        public int GetDamage()                       // How much Attack Items Damage do
+        {
+            return _damage;  
         }
 
         public int GetCost()
@@ -35,6 +36,7 @@ namespace ShopRPG
         {
             return _description;
         }
+
 
     }
 }

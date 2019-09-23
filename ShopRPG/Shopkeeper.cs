@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Shopkeeper
+    class Shopkeeper 
     {
         int storeFunds = 0;
         int playerFunds = 0;
