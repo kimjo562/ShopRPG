@@ -8,15 +8,53 @@ namespace ShopRPG
 {
     class Inventory
     {
-        public WeaponItem[] _weaponList = new WeaponItem[10];                      // [10] Inventory Limit
-        public ArmorItem[] _armorList = new ArmorItem[10];                         // [10] Inventory Limit
+        int storeFunds = 0;
+        int playerFunds = 0;
 
-        public Inventory()
+
+        public void InventoryMenu()
+        { 
+            string choice = "";
+            while (choice != "Q")
+            {
+                // Display Menu
+                Console.WriteLine("Player Inventory Menu");
+                Console.WriteLine("Player Funds: " + playerFunds + "    Potions Held: "/* + _potionHeld*/);
+                Console.WriteLine("1.) See Weapon Gear \n2.) See Armor Gear \nQ.) Quit");
+
+                //Get input
+                choice = Console.ReadLine();
+                Console.WriteLine("");
+
+                //Check Input
+                if (choice == "1")
+                {
+                    // Print the Player's Weapons being stored here.
+
+                }
+                else if (choice == "2")
+                {
+                    // Print the Player's Armor being Stored here.
+
+                }
+
+            }
+
+        }
+
+        public void PrintWeapons()
         {
+
 
 
         }
 
+        public void PrintArmor()
+        {
+
+
+
+        }
 
     }
 }

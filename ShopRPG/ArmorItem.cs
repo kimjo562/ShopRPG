@@ -9,14 +9,6 @@ namespace ShopRPG
     class ArmorItem : AllItem
     {
         private int _defense;
-        public int Defense                           // How much Defense Items Damage do
-        {
-            get
-            {
-                return _defense;
-            }
-        }
-
         public ArmorItem(string newName, int _weaponDefense, int price, string description)
         {
             _name = newName;                         // Name of the Armor
@@ -24,6 +16,24 @@ namespace ShopRPG
             _cost = price;                           // The Price of the Armor
             _description = description;              // The Description of said defense itme.
              
+        }
+
+        public int GetDefense                           // How much Defense Items Damage do
+        {
+            get
+            {
+                return _defense;
+            }
+        }
+
+        public int GetCost()
+        {
+            return _cost;
+        }
+
+        public string GetDescription()
+        {
+            return _description;
         }
 
     }

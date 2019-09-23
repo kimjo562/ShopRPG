@@ -15,18 +15,35 @@ namespace ShopRPG
             string playerSave = "playerSave.txt";               // Player Inventory Save File
             string shopSave = "shopSave.txt";                   // Shop Inventory Save File
 
-            int playerFunds = 0;
-            int storeFunds = 0;
-
             AllItem[] playerInventory;
             AllItem[] storeInventory;
+
+            Inventory inventory = new Inventory();
+            Shopkeeper shopkeeper = new Shopkeeper();
 
             string choice = "";
             while (choice != "Q")
             {
                 Console.WriteLine("Hello there.\n1.) Inventory \n2.) Shop \n3.) Save \n4.) Load \nQ.) Quit");
                 choice = Console.ReadLine();
+                Console.WriteLine("");
+                // Check input
+                if (choice == "1")
+                {
+                    inventory.InventoryMenu();
+                }
+                else if(choice=="2")
+                {
+                    shopkeeper.ShopkeeperMenu();
+                }
+                else if(choice == "3")
+                {
+                    
+                }
+                else if (choice == "4")
+                {
 
+                }
             }
 
             Console.ReadKey();
