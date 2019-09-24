@@ -41,19 +41,5 @@ namespace ShopRPG
 
         }
 
-        public void PrintWeapons()
-        {
-      //      for(int i = 0; i < )
-
-
-        }
-
-        public void PrintArmor()
-        {
-
-
-
-        }
-
     }
 }

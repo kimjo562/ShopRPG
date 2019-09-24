@@ -15,9 +15,7 @@ namespace ShopRPG
             string playerSave = "playerSave.txt";               // Player Inventory Save File
             string shopSave = "shopSave.txt";                   // Shop Inventory Save File
 
-            AllItem[] playerInventory;
-            AllItem[] storeInventory;
-
+            Player player = new Player("TesterBoi");
             Inventory inventory = new Inventory();
             Shopkeeper shopkeeper = new Shopkeeper();
 
@@ -35,6 +33,7 @@ namespace ShopRPG
                 else if(choice=="2")
                 {
                     shopkeeper.ShopkeeperMenu();
+
                 }
                 else if(choice == "3")
                 {

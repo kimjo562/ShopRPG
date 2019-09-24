@@ -8,7 +8,6 @@ namespace ShopRPG
 {
     class ArmorItem : AllItem
     {
-        private int _defense;
         public ArmorItem(string newName, int _weaponDefense, int price, string description)
         {
             _name = newName;                         // Name of the Armor
@@ -21,21 +20,54 @@ namespace ShopRPG
         {
             return _name;
         }
-
-        public int GetDefense()                      // How much Defense Items Damage do
+        public override string Name
         {
-                return _defense;
+            set
+            {
+                _name = value;
+            }
         }
 
-        public int GetCost()
+        public override int GetItemArmor()
+        {
+            return _defense;
+        }
+        public override int Armor
+        {
+            set
+            {
+                _defense = value;
+            }
+        }
+        public override int GetCost()
         {
             return _cost;
         }
-
-        public string GetDescription()
+        public override int Cost
+        {
+            set
+            {
+                _cost = value;
+            }
+        }
+        public override string GetDescription()
         {
             return _description;
         }
+        public override string Description
+        {
+            set
+            {
+                _description = value;
+            }
+        }
+
+
+        public override void Print()
+        {
+            Console.WriteLine("\n  Name: " + GetName() + "\n  Defense: " + GetItemArmor() + "\n  Description: " + GetDescription() + "\n  Cost: " + GetCost());
+        }
+
 
 
 

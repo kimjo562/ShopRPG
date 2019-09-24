@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Shopkeeper 
+    class Shopkeeper
     {
+
+        private ItemPool itemPool = new ItemPool();
+
         int storeFunds = 0;
         int playerFunds = 0;
 
@@ -104,6 +107,11 @@ namespace ShopRPG
 
                     }
 
+                }
+                else if(choice == "3")
+                {
+                    Console.WriteLine("Item Inspection");
+                    itemPool.PrintItemPool();
                 }
 
             }

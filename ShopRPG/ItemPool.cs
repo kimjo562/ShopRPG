@@ -8,8 +8,7 @@ namespace ShopRPG
 {
     class ItemPool                                                                 // Basically my ArrayList
     {
-        private object[] _list;
-
+        private AllItem[] _item = { };
         public WeaponItem[] _weaponList = new WeaponItem[10];                      // [10] Inventory Limit
         public ArmorItem[] _armorList = new ArmorItem[10];                         // [10] Inventory Limit
 
@@ -32,39 +31,68 @@ namespace ShopRPG
             _armorList[5] = new ArmorItem("Bronze Armor",   25, 500,  "This is a Bronze Armor ...");
         }
 
-        public virtual void Add(object value)
+        public void Add(AllItem item)
         {
             // Create a new array if Length + 1
-            object[] newList = new object[_list.Length + 1];
+            AllItem[] newAllItem = new AllItem[_item.Length + 1];
             // Put the values of the old array into the new one
-            for (int i = 0; i < _list.Length; i++)
+            for (int i = 0; i < _item.Length; i++)
             {
-                newList[i] = _list[i];
+                newAllItem[i] = _item[i];
             }
             // Put the new value at the end of the new array
-            newList[newList.Length - 1] = value;
+            newAllItem[newAllItem.Length - 1] = item;
             // Sets the current array to the new array
-            _list = newList;
+            _item = newAllItem;
         }
 
         public virtual void Remove(int index)
         {
             // Create a new array if Length - 1
-            object[] newList = new object[_list.Length - 1];
+            AllItem[] newAllItem = new AllItem[_item.Length - 1];
             int newPosition = 0;                                                            // Puts it into the new position (newlist array and list array)
             // Put the values of the old array into the new array
-            for (int i = 0; i < _list.Length; i++)
+            for (int i = 0; i < _item.Length; i++)
             {
                 if (i != index)
                 {
-                    newList[newPosition] = _list[i];
+                    newAllItem[newPosition] = _item[i];
                     newPosition++;
                 }
             }
             //Set the current array to the new array
-            _list = newList;
+            _item = newAllItem;
         }
+
+        public AllItem GetItem(int index)
+        {
+            return _item[index];
+        }
+
+        public void PrintItemPool()
+        {
+            int counter = 1;
+            Console.WriteLine("Items:");
+            foreach (AllItem i in _item)
+            {
+                if (i is WeaponItem)
+                {
+                    Console.Write(counter + ")");
+                    counter++;
+                    i.Print();
+                }
+                if (i is ArmorItem)
+                {
+                    Console.Write(counter + ")");
+                    counter++;
+                    i.Print();
+                }
+            }
+            Console.WriteLine();
+        }
+
     }
+
 }
 
 
