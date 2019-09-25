@@ -23,5 +23,11 @@ namespace ShopRPG
             item.PrintItemPoolArmor();
         }
 
+        public AllItem GetItem(int index)
+        {
+         return item.GetItem(index);
+        }
+
+
     }
 }

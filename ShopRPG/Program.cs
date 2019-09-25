@@ -17,7 +17,7 @@ namespace ShopRPG
 
             Player player = new Player("TesterBoi");
             Inventory inventory = new Inventory();
-            Shopkeeper shopkeeper = new Shopkeeper();
+            Shopkeeper shopkeeper = new Shopkeeper();      
 
             string choice = "";
             while (choice != "Q")

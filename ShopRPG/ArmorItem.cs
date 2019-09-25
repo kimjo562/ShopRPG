@@ -16,17 +16,6 @@ namespace ShopRPG
             _description = description;              // The Description of said defense itme.
              
         }
-        public string GetName()
-        {
-            return _name;
-        }
-        public override string Name
-        {
-            set
-            {
-                _name = value;
-            }
-        }
 
         public override int GetItemArmor()
         {

@@ -9,8 +9,8 @@ namespace ShopRPG
     class ItemPool                                                                 // Basically my ArrayList
     {
         private AllItem[] _item = { };
-        public WeaponItem[] _weaponList = new WeaponItem[10];                      // [10] Inventory Limit
-        public ArmorItem[] _armorList = new ArmorItem[10];                         // [10] Inventory Limit
+        public WeaponItem[] _weaponList = new WeaponItem[6];                      // [6] Inventory Limit
+        public ArmorItem[] _armorList = new ArmorItem[6];                         // [6] Inventory Limit
 
         // Name, [Attack]/[Defense] Value, Price, Description
 
@@ -41,9 +41,15 @@ namespace ShopRPG
             foreach (AllItem i in _armorList)
             {
                 Add(i);
-            }
+            }         
 
         }
+
+        public AllItem GetItem(int index)
+        {
+            return _item[index];
+        }
+
 
         public void Add(AllItem item)
         {
@@ -76,11 +82,6 @@ namespace ShopRPG
             }
             //Set the current array to the new array
             _item = newAllItem;
-        }
-
-        public AllItem GetItem(int index)
-        {
-            return _item[index];
         }
 
         public void PrintItemPoolWeapon()

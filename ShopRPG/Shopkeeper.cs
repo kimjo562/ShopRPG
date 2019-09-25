@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Shopkeeper 
+    class Shopkeeper
     {
         private ItemPool itemPool = new ItemPool();
+        AllItem temp = new AllItem();
 
         int storeFunds = 0;
         int playerFunds = 0;
-        AllItem temp = new AllItem();
 
         public void ShopkeeperMenu()
         {
@@ -45,16 +45,91 @@ namespace ShopRPG
 
                         if (subChoice == "1")
                         {
-                            // When player buys item from List
-                            
-                            // Add it to Player Inventory and remove it from ShopList
-
-                            // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+                            // When player buys item from List  (Number: Dictates the ItemPool Array Number)
+                            AllItem temp = itemPool.GetItem(0);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                // Add it to Player Inventory and remove it from ShopList
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
 
                         }
                         else if (subChoice == "2")
                         {
-
+                            AllItem temp = itemPool.GetItem(1);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "3")
+                        {
+                            AllItem temp = itemPool.GetItem(2);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "4")
+                        {
+                            AllItem temp = itemPool.GetItem(3);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "5")
+                        {
+                            AllItem temp = itemPool.GetItem(4);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "6")
+                        {
+                            AllItem temp = itemPool.GetItem(5);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
                         }
 
                     }
@@ -65,18 +140,90 @@ namespace ShopRPG
                         Console.WriteLine("Here are your armor choices.");
                         subChoice = Console.ReadLine();
 
-                        if(subChoice == "1")
+                        if (subChoice == "1")
                         {
-                            // When player buys item from List
-                           
-                            // Add it to Player Inventory and remove it from ShopList
-
-                            // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+                            AllItem temp = itemPool.GetItem(6);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
 
                         }
                         else if (subChoice == "2")
                         {
-
+                            AllItem temp = itemPool.GetItem(7);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "3")
+                        {
+                            AllItem temp = itemPool.GetItem(8);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "4")
+                        {
+                            AllItem temp = itemPool.GetItem(9);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "5")
+                        {
+                            AllItem temp = itemPool.GetItem(10);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
+                        }
+                        else if (subChoice == "6")
+                        {
+                            AllItem temp = itemPool.GetItem(11);
+                            if (playerFunds < temp.GetCost())
+                            {
+                                temp.Print();
+                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
+                            }
+                            Console.ReadKey();
                         }
 
                     }
@@ -91,7 +238,7 @@ namespace ShopRPG
                             Console.WriteLine("You have bought " + potionAmount + " and it costed you " + potionAmount * 250 + " gold.\n");
 
                             // Add Potions amount into Player Inventory.
-//                            /*inventory._potionHeld*/ += potionAmount;
+                            //                            /*inventory._potionHeld*/ += potionAmount;
 
 
                         }
@@ -138,7 +285,7 @@ namespace ShopRPG
                     }
 
                 }
-                else if(choice == "3")
+                else if (choice == "3")
                 {
                     Console.WriteLine("Item Inspection");
                     PrintWeapon();

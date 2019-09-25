@@ -18,6 +18,10 @@ namespace ShopRPG
         {
 
         }
+        public string GetName()
+        {
+            return _name;
+        }
         public virtual string Name
         {
             set
