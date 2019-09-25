@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Player
+    class Player                                                                                // Type 
     {
-        ItemPool item = new ItemPool();
+        Inventory playerInv = new Inventory();
 
         private string _name = " ";
 
@@ -19,13 +19,13 @@ namespace ShopRPG
 
         public void Print()
         {
-            item.PrintItemPoolWeapon();
-            item.PrintItemPoolArmor();
+            playerInv.PrintItemPoolWeapon();
+            playerInv.PrintItemPoolArmor();
         }
 
         public AllItem GetItem(int index)
         {
-         return item.GetItem(index);
+         return playerInv.GetItem(index);
         }
 
 

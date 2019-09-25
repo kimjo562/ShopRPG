@@ -8,302 +8,65 @@ namespace ShopRPG
 {
     class Shopkeeper
     {
-        private ItemPool itemPool = new ItemPool();
+        Inventory shopInv = new Inventory();
         AllItem temp = new AllItem();
 
         int storeFunds = 0;
-        int playerFunds = 0;
+        int playerFunds = 50000;
 
-        public void ShopkeeperMenu()
+        public WeaponItem[] _weaponList = new WeaponItem[6];                      // [6] Inventory Limit
+        public ArmorItem[] _armorList = new ArmorItem[6];                         // [6] Inventory Limit
+
+        // Name, [Attack]/[Defense] Value, Price, Description
+
+        public Shopkeeper()                                                                                                  // Will be used to call for items
         {
-            string choice = "";
-            while (choice != "Q")
+            // Populate the weapon list
+            _weaponList[0] = new WeaponItem("Great Sword", 50, 800, "This is a Great Sword...");
+            _weaponList[1] = new WeaponItem("Sword", 25, 300, "This is a Sword...");
+            _weaponList[2] = new WeaponItem("Dagger", 20, 250, "This is a Dagger...");
+            _weaponList[3] = new WeaponItem("Spear", 30, 350, "This is a Spear...");
+            _weaponList[4] = new WeaponItem("Bow", 25, 300, "This is a Bow...");
+            _weaponList[5] = new WeaponItem("Whip", 15, 200, "This is a Whip...");
+
+            // Populate the armor list
+            _armorList[0] = new ArmorItem("Leather Armor", 15, 100, "This is a Leather Armor ...");
+            _armorList[1] = new ArmorItem("Chain Armor", 20, 300, "This is a Chain Armor ...");
+            _armorList[2] = new ArmorItem("Iron Armor", 30, 750, "This is a Iron Armor ...");
+            _armorList[3] = new ArmorItem("Cloth Armor", 5, 50, "This is a Cloth Armor ...");
+            _armorList[4] = new ArmorItem("Dragon Armor", 100, 5000, "This is a Dragon Armor ...");
+            _armorList[5] = new ArmorItem("Bronze Armor", 25, 500, "This is a Bronze Armor ...");
+
+            foreach (AllItem i in _weaponList)
             {
-                // Display Menu
-                Console.WriteLine("Shop Menu");
-                Console.WriteLine("------------------------------------------------");
-                Console.WriteLine("Store Funds: " + storeFunds);
-                Console.WriteLine("1.) Buy Items \n2.) Sell Items \n3.) Inspect Items \nQ.) Leave");
-
-                //Get input
-                choice = Console.ReadLine();
-                Console.WriteLine("");
-
-                //Check Input
-                if (choice == "1")
-                {
-                    string subChoice = "";
-                    Console.WriteLine("What would you like to buy?");
-                    Console.WriteLine("1.) Weapon    2.) Armor    3.) Potions    0.)Back");
-                    choice = Console.ReadLine();
-                    if (choice == "1")
-                    {
-                        // Add Array of Shop Weapons here.
-                        PrintWeapon();
-                        Console.WriteLine("Here are your weapon choices.");
-                        subChoice = Console.ReadLine();
-
-                        if (subChoice == "1")
-                        {
-                            // When player buys item from List  (Number: Dictates the ItemPool Array Number)
-                            AllItem temp = itemPool.GetItem(0);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                // Add it to Player Inventory and remove it from ShopList
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-
-                        }
-                        else if (subChoice == "2")
-                        {
-                            AllItem temp = itemPool.GetItem(1);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "3")
-                        {
-                            AllItem temp = itemPool.GetItem(2);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "4")
-                        {
-                            AllItem temp = itemPool.GetItem(3);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "5")
-                        {
-                            AllItem temp = itemPool.GetItem(4);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "6")
-                        {
-                            AllItem temp = itemPool.GetItem(5);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-
-                    }
-                    else if (choice == "2")
-                    {
-                        // Add Array of Shop Armor here.
-                        PrintArmor();
-                        Console.WriteLine("Here are your armor choices.");
-                        subChoice = Console.ReadLine();
-
-                        if (subChoice == "1")
-                        {
-                            AllItem temp = itemPool.GetItem(6);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-
-                        }
-                        else if (subChoice == "2")
-                        {
-                            AllItem temp = itemPool.GetItem(7);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "3")
-                        {
-                            AllItem temp = itemPool.GetItem(8);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "4")
-                        {
-                            AllItem temp = itemPool.GetItem(9);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "5")
-                        {
-                            AllItem temp = itemPool.GetItem(10);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if (subChoice == "6")
-                        {
-                            AllItem temp = itemPool.GetItem(11);
-                            if (playerFunds < temp.GetCost())
-                            {
-                                temp.Print();
-                                Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                            }
-                            Console.ReadKey();
-                        }
-
-                    }
-                    else if (choice == "3")
-                    {
-                        Console.WriteLine("How many potions would you like to buy?");
-                        int potionAmount = Convert.ToInt32(Console.ReadLine());
-
-                        if (playerFunds > 250 * potionAmount)
-                        {
-                            playerFunds -= 250 * potionAmount;                                     // How many you want to buy = respective price.
-                            Console.WriteLine("You have bought " + potionAmount + " and it costed you " + potionAmount * 250 + " gold.\n");
-
-                            // Add Potions amount into Player Inventory.
-                            //                            /*inventory._potionHeld*/ += potionAmount;
-
-
-                        }
-                        else if (playerFunds < 250 * potionAmount)
-                        {
-                            Console.WriteLine("You're short on gold you pleb.");
-                            Console.WriteLine("Try again when you have more gold.\n");
-                            Console.ReadKey();
-
-                        }
-
-                    }
-                    else if (choice != "0")
-                    {
-
-
-                    }
-
-                }
-                else if (choice == "2")
-                {
-                    string subChoice = "";
-                    Console.WriteLine("What would you like to sell?");
-                    Console.WriteLine("1.) Weapon    2.) Armor    0.)Back");
-                    choice = Console.ReadLine();
-                    if (choice == "1")
-                    {
-                        Console.WriteLine("Here are your weapon choices.");
-                        // Get Player Inventory List
-                        subChoice = Console.ReadLine();
-
-                    }
-                    else if (choice == "2")
-                    {
-                        Console.WriteLine("Here are your armor choices.");
-                        // Get Player Inventory List
-                        subChoice = Console.ReadLine();
-
-                    }
-                    else if (choice != "0")
-                    {
-
-
-                    }
-
-                }
-                else if (choice == "3")
-                {
-                    Console.WriteLine("Item Inspection");
-                    PrintWeapon();
-                    PrintArmor();
-
-                }
-
+                shopInv.Add(i);
             }
+
+            foreach (AllItem i in _armorList)
+            {
+                shopInv.Add(i);
+            }
+
         }
+
         public void PrintWeapon()
         {
-            itemPool.PrintItemPoolWeapon();
+            shopInv.PrintItemPoolWeapon();
         }
 
         public void PrintArmor()
         {
-            itemPool.PrintItemPoolArmor();
+            shopInv.PrintItemPoolArmor();
         }
+
+        public void SellingItem(int index, Player player)
+        {
+      //      AllItem wepTemp = itemPool[index];
+          //  wepTemp
+
+
+        }
+
 
     }
 }

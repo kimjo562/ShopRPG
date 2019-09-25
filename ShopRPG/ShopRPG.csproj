@@ -46,7 +46,6 @@
     <Compile Include="ArmorItem.cs" />
     <Compile Include="AllItem.cs" />
     <Compile Include="Inventory.cs" />
-    <Compile Include="ItemPool.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
