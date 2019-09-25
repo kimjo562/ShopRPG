@@ -8,6 +8,8 @@ namespace ShopRPG
 {
     class Inventory 
     {
+        private ItemPool itemPool = new ItemPool();
+
         int storeFunds = 0;
         int playerFunds = 0;
 
@@ -30,7 +32,7 @@ namespace ShopRPG
                 //Check Input
                 if (choice == "1")
                 {
-                    // Print the Player's Weapons being stored here.
+                    Print();
                 }
                 else if (choice == "2")
                 {
@@ -39,6 +41,11 @@ namespace ShopRPG
 
             }
 
+        }
+
+        public void Print()
+        {
+      //      itemPool.PrintItemPool();
         }
 
     }

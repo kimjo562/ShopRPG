@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Shopkeeper
+    class Shopkeeper 
     {
-
         private ItemPool itemPool = new ItemPool();
 
         int storeFunds = 0;
         int playerFunds = 0;
+        AllItem temp = new AllItem();
 
         public void ShopkeeperMenu()
         {
@@ -23,7 +23,7 @@ namespace ShopRPG
                 Console.WriteLine("Shop Menu");
                 Console.WriteLine("------------------------------------------------");
                 Console.WriteLine("Store Funds: " + storeFunds);
-                Console.WriteLine("1.) Buy Items \n2.) Sell Items \n3.) Inspect Items \nQ.) Quit");
+                Console.WriteLine("1.) Buy Items \n2.) Sell Items \n3.) Inspect Items \nQ.) Leave");
 
                 //Get input
                 choice = Console.ReadLine();
@@ -38,16 +38,46 @@ namespace ShopRPG
                     choice = Console.ReadLine();
                     if (choice == "1")
                     {
-                        Console.WriteLine("Here are your weapon choices.");
                         // Add Array of Shop Weapons here.
+                        PrintWeapon();
+                        Console.WriteLine("Here are your weapon choices.");
                         subChoice = Console.ReadLine();
+
+                        if (subChoice == "1")
+                        {
+                            // When player buys item from List
+                            
+                            // Add it to Player Inventory and remove it from ShopList
+
+                            // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+
+                        }
+                        else if (subChoice == "2")
+                        {
+
+                        }
 
                     }
                     else if (choice == "2")
                     {
-                        Console.WriteLine("Here are your armor choices.");
                         // Add Array of Shop Armor here.
+                        PrintArmor();
+                        Console.WriteLine("Here are your armor choices.");
                         subChoice = Console.ReadLine();
+
+                        if(subChoice == "1")
+                        {
+                            // When player buys item from List
+                           
+                            // Add it to Player Inventory and remove it from ShopList
+
+                            // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+
+                        }
+                        else if (subChoice == "2")
+                        {
+
+                        }
 
                     }
                     else if (choice == "3")
@@ -111,11 +141,23 @@ namespace ShopRPG
                 else if(choice == "3")
                 {
                     Console.WriteLine("Item Inspection");
-                    itemPool.PrintItemPool();
+                    PrintWeapon();
+                    PrintArmor();
+
                 }
 
             }
         }
+        public void PrintWeapon()
+        {
+            itemPool.PrintItemPoolWeapon();
+        }
+
+        public void PrintArmor()
+        {
+            itemPool.PrintItemPoolArmor();
+        }
+
     }
 }
 

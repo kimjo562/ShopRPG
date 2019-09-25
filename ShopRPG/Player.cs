@@ -8,11 +8,19 @@ namespace ShopRPG
 {
     class Player
     {
+        ItemPool item = new ItemPool();
+
         private string _name = " ";
 
         public Player(string name)
         {
             _name = name;
+        }
+
+        public void Print()
+        {
+            item.PrintItemPoolWeapon();
+            item.PrintItemPoolArmor();
         }
 
     }

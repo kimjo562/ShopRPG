@@ -14,21 +14,35 @@ namespace ShopRPG
 
         // Name, [Attack]/[Defense] Value, Price, Description
 
-        public void ItemPoolList()
+        public ItemPool()                                                                                                  // Will be used to call for items
         {
+            // Populate the weapon list
+
             _weaponList[0] = new WeaponItem("Great Sword",  50, 800, "This is a Great Sword...");
             _weaponList[1] = new WeaponItem("Sword",        25, 300, "This is a Sword...");
             _weaponList[2] = new WeaponItem("Dagger",       20, 250, "This is a Dagger...");
-            _weaponList[3] = new WeaponItem("Spear",        30, 350, "This is a Spear");
+            _weaponList[3] = new WeaponItem("Spear",        30, 350, "This is a Spear...");
             _weaponList[4] = new WeaponItem("Bow",          25, 300, "This is a Bow...");
             _weaponList[5] = new WeaponItem("Whip",         15, 200, "This is a Whip...");
 
+            // Populate the armor list
             _armorList[0] = new ArmorItem("Leather Armor",  15, 100,  "This is a Leather Armor ...");
             _armorList[1] = new ArmorItem("Chain Armor",    20, 300,  "This is a Chain Armor ...");
             _armorList[2] = new ArmorItem("Iron Armor",     30, 750,  "This is a Iron Armor ...");
             _armorList[3] = new ArmorItem("Cloth Armor",     5, 50,   "This is a Cloth Armor ...");
             _armorList[4] = new ArmorItem("Dragon Armor",  100, 5000, "This is a Dragon Armor ...");
             _armorList[5] = new ArmorItem("Bronze Armor",   25, 500,  "This is a Bronze Armor ...");
+
+            foreach(AllItem i in _weaponList)
+            {
+                Add(i);
+            }
+
+            foreach (AllItem i in _armorList)
+            {
+                Add(i);
+            }
+
         }
 
         public void Add(AllItem item)
@@ -69,18 +83,28 @@ namespace ShopRPG
             return _item[index];
         }
 
-        public void PrintItemPool()
+        public void PrintItemPoolWeapon()
         {
             int counter = 1;
-            Console.WriteLine("Items:");
+            Console.WriteLine("List of Weapons:");
             foreach (AllItem i in _item)
             {
-                if (i is WeaponItem)
+                if (i is WeaponItem)                        
                 {
                     Console.Write(counter + ")");
                     counter++;
                     i.Print();
                 }
+            }
+            Console.WriteLine();
+        }
+
+        public void PrintItemPoolArmor()
+        {
+            int counter = 1;
+            Console.WriteLine("List of Armors:");
+            foreach (AllItem i in _item)
+            {
                 if (i is ArmorItem)
                 {
                     Console.Write(counter + ")");
@@ -89,6 +113,7 @@ namespace ShopRPG
                 }
             }
             Console.WriteLine();
+
         }
 
     }

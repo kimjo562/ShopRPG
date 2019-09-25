@@ -62,7 +62,6 @@ namespace ShopRPG
             }
         }
 
-
         public override void Print()
         {
             Console.WriteLine("\n  Name: " + GetName() + "\n  Damage: " + GetItemWeapon() + "\n  Description: " + GetDescription() + "\n  Cost: " + GetCost());

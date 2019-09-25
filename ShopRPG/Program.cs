@@ -41,7 +41,7 @@ namespace ShopRPG
                 }
                 else if (choice == "4")
                 {
-
+                   
                 }
                 else if (choice == "iamthegoldman")
                 {
@@ -49,7 +49,7 @@ namespace ShopRPG
                     choice = Console.ReadLine();
                     if (choice == "addweapon")
                     {
-                        
+
 
                     }
                     else if(choice == "addarmor")
