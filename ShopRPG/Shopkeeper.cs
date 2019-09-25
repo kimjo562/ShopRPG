@@ -59,18 +59,23 @@ namespace ShopRPG
             shopInv.PrintItemPoolArmor();
         }
 
-        public void SellingItem(int index, Player player)
+        public bool SellingItem(int index, Player player)
         {
-      //      AllItem wepTemp = itemPool[index];
-          //  wepTemp
+            AllItem wepTemp = shopInv[index];
 
+            if (player.getDatMoney < temp.GetCost())
+            {
+                // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+                temp.Print();
+                return false; 
+            }
+            //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
 
+            return true;
+           
         }
 
 
     }
 }
-
-
-
 

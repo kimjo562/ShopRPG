@@ -33,7 +33,7 @@ namespace ShopRPG
                 }
                 else if (choice == "2")
                 {
-                    
+
                 }
                 else if (choice == "3")
                 {
@@ -63,8 +63,10 @@ namespace ShopRPG
                     }
                 }
             }
-
             Console.ReadKey();
+
+
+
             void InventoryMenu()
             {
                 while (choice != "Q")
@@ -93,6 +95,8 @@ namespace ShopRPG
 
             }
 
+
+
             void ShopMenu()
             {
                 while (choice != "Q")
@@ -110,7 +114,7 @@ namespace ShopRPG
                     //Check Input
                     if (choice == "1")
                     {
-                        string subChoice = "";
+                        int subChoice;
                         Console.WriteLine("What would you like to buy?");
                         Console.WriteLine("1.) Weapon    2.) Armor    3.) Potions    0.)Back");
                         choice = Console.ReadLine();
@@ -119,93 +123,27 @@ namespace ShopRPG
                             // Add Array of Shop Weapons here.
                             shopkeeper.PrintWeapon();
                             Console.WriteLine("Here are your weapon choices.");
-                            subChoice = Console.ReadLine();
+                            subChoice = Convert.ToInt32(Console.ReadLine());
 
-                            if (subChoice == "1")
+                            // When player buys item from List  (Number: Dictates the Index Array Number)
+                            if(shopkeeper.SellingItem(subChoice,player))
                             {
-                                // When player buys item from List  (Number: Dictates the Index Array Number)
-                                AllItem temp = shopkeeper.shopInv.GetItem(0);
-                                if (playerFunds < temp.GetCost())
-                                {
-                                    // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
-                                    temp.Print();
-                                    Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                                }
-                                else
-                                {
-                                    // Add it to Player Inventory and remove it from ShopList
-                                    Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                                    temp = shopInv.GetItem(0);
-                                    shopInv.Remove(0);
-
-                                }
-                                Console.ReadKey();
-
-                            }
-                            else if (subChoice == "2")
-                            {
+                                Console.WriteLine("You have bought the " + temp.GetName() + ".");
                                 
                             }
-                            else if (subChoice == "3")
+                            else
                             {
-                               
+                                Console.WriteLine("You don't have enough money to buy this");
                             }
-                            else if (subChoice == "4")
-                            {
-
-                            }
-                            else if (subChoice == "5")
-                            {
-                               
-                            }
-                            else if (subChoice == "6")
-                            {
-                              
-                            }
+                            Console.ReadKey();
 
                         }
                         else if (choice == "2")
                         {
                             // Add Array of Shop Armor here.
-                            PrintArmor();
+                            shopkeeper.PrintArmor();
                             Console.WriteLine("Here are your armor choices.");
-                            subChoice = Console.ReadLine();
-
-                            if (subChoice == "1")
-                            {
-                                AllItem temp = shopInv.GetItem(6);
-                                if (playerFunds < temp.GetCost())
-                                {
-                                    temp.Print();
-                                    Console.WriteLine("You don't have enough money to buy " + temp.GetName() + ".");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You have bought the " + temp.GetName() + ".");
-                                }
-                                Console.ReadKey();
-
-                            }
-                            else if (subChoice == "2")
-                            {
-                                
-                            }
-                            else if (subChoice == "3")
-                            {
-                                
-                            }
-                            else if (subChoice == "4")
-                            {
-                                
-                            }
-                            else if (subChoice == "5")
-                            {
-                                
-                            }
-                            else if (subChoice == "6")
-                            {
-                               
-                            }
+                            subChoice = Convert.ToInt32(Console.ReadLine());
 
                         }
                         else if (choice == "3")
@@ -269,8 +207,8 @@ namespace ShopRPG
                     else if (choice == "3")
                     {
                         Console.WriteLine("Item Inspection");
-                        PrintWeapon();
-                        PrintArmor();
+                        shopkeeper.PrintWeapon();
+                        shopkeeper.PrintArmor();
 
                     }
 

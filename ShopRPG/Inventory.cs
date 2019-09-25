@@ -85,13 +85,26 @@ namespace ShopRPG
             Console.WriteLine();
 
         }
-
-
-        public void Print()
+        /// <summary>
+        /// int[] someArray ={1,2,3}
+        /// somaeArray[0]
+        /// AllItem itemlist;
+        /// itemlist[0]
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public AllItem this[int index]              // CustomDataType (AllItem)
         {
-      //      itemPool.PrintItemPool();
+            get                                     // Get Give the Instructions of Whatever        (Any logic can be implemented)
+            {
+                return storage[index];              
+            }
+            set                                     // Set is Do whatever the (get) instuction stated.
+            {
+                storage[index] = value;
+            }
         }
 
-       
     }
 }

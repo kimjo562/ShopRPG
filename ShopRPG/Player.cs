@@ -11,7 +11,7 @@ namespace ShopRPG
         Inventory playerInv = new Inventory();
 
         private string _name = " ";
-
+        private int money = 1000;
         public Player(string name)
         {
             _name = name;
@@ -21,6 +21,13 @@ namespace ShopRPG
         {
             playerInv.PrintItemPoolWeapon();
             playerInv.PrintItemPoolArmor();
+        }
+        public int getDatMoney
+        {
+            get
+            {
+                return money;
+            }
         }
 
         public AllItem GetItem(int index)
