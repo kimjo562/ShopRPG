@@ -27,39 +27,52 @@ namespace ShopRPG
                 if (choice == "1")
                 {
                     InventoryMenu();
+                    choice = " ";
                 }
                 else if (choice == "2")
                 {
                     ShopMenu();
+                    choice = " ";
                 }
                 else if (choice == "3")
                 {
 
+                    choice = " ";
                 }
                 else if (choice == "4")
                 {
 
+                    choice = " ";
                 }
                 else if (choice == "error404stillaliveinside")
                 {
-                    Console.WriteLine("Debug Mode Activated");
-                    choice = Console.ReadLine();
-                    if (choice == "addweapon")
+                    Console.WriteLine("Debug Mode Activated\n");
+                    while (choice != "back")
                     {
+                        int debug = 0;
+                        Console.WriteLine("Debug Mode (Active)");
+                        Console.WriteLine("additem, addgold, back");
+                        choice = Console.ReadLine();
+                        if (choice == "additem")
+                        {
 
 
-                    }
-                    else if (choice == "addarmor")
-                    {
+                        }
+                        else if (choice == "addgold")
+                        {
+                            Console.WriteLine("How much player gold will you give?");
+                            debug = Convert.ToInt32(Console.ReadLine());
 
-
-                    }
-                    else if (choice == "back")
-                    {
-
+                            player.getDatMoney += debug;
+                            Console.WriteLine("You have given yourself " + debug + " gold.\n");
+                        }
+                        else if (choice == "back")
+                        {
+                            Console.WriteLine("Now returning to main menu.\n");
+                        }
                     }
                 }
-                choice = " ";
+
             }
 
 
@@ -68,10 +81,10 @@ namespace ShopRPG
                 while (choice != "Q")
                 {
                     // Display Menu
-                    Console.WriteLine("Player Inventory Menu");                                                                 
+                    Console.WriteLine("Player Inventory Menu");
                     Console.WriteLine("------------------------------------------------");
                     Console.WriteLine("Player Funds: " + player.getDatMoney + "               Potions Held: " + player._potionHeld);
-                    Console.WriteLine("1.) See Weapon Gear \n2.) See Armor Gear \nQ.) Quit");
+                    Console.WriteLine("1.) See Item Gear \nQ.) Quit");
 
                     //Get input
                     choice = Console.ReadLine();
@@ -80,14 +93,10 @@ namespace ShopRPG
                     //Check Input
                     if (choice == "1")
                     {
-                        // Print the Player's Weapon being stored.
-                        player.PrintWeapon();
+                        // Print the Player's items being stored.
+                        player.PrintList();
                     }
-                    else if (choice == "2")
-                    {
-                        // Print the Player's Armor being stored.
-                        player.PrintArmor();
-                    }
+
 
                 }
 
@@ -113,20 +122,20 @@ namespace ShopRPG
                     {
                         int subChoice;
                         Console.WriteLine("What would you like to buy?");
-                        Console.WriteLine("1.) Weapon    2.) Armor    3.) Potions    0.)Back");
+                        Console.WriteLine("1.) Weapon / Armor    2.) Potions    0.)Back");
                         choice = Console.ReadLine();
                         if (choice == "1")
                         {
                             // Add Array of Shop Weapons here.
-                            shopkeeper.PrintWeapon();
+                            shopkeeper.PrintList();
                             Console.WriteLine("Here are your weapon choices.");
                             subChoice = Convert.ToInt32(Console.ReadLine());
 
                             // When player buys item from List  (Number: Dictates the Index Array Number)
-                            if(shopkeeper.SellingItem(subChoice - 1,player))
+                            if (shopkeeper.SellingItem(subChoice - 1, player))
                             {
-                                
-                               
+                                Console.WriteLine("");
+
                             }
                             else
                             {
@@ -136,26 +145,6 @@ namespace ShopRPG
 
                         }
                         else if (choice == "2")
-                        {
-                            // Add Array of Shop Armor here.
-                            shopkeeper.PrintArmor();
-                            Console.WriteLine("Here are your armor choices.");
-                            subChoice = Convert.ToInt32(Console.ReadLine());
-
-                            // When player buys item from List  (Number: Dictates the Index Array Number)
-                            if (shopkeeper.SellingItem(subChoice + 5, player))
-                            {
-
-
-                            }
-                            else
-                            {
-                                Console.WriteLine("You don't have enough money to buy this");
-                            }
-                            Console.ReadKey();
-
-                        }
-                        else if (choice == "3")
                         {
                             Console.WriteLine("How many potions would you like to buy?");
                             int potionAmount = Convert.ToInt32(Console.ReadLine());
@@ -187,22 +176,28 @@ namespace ShopRPG
                     }
                     else if (choice == "2")
                     {
-                        string subChoice = "";
                         Console.WriteLine("What would you like to sell?");
-                        Console.WriteLine("1.) Weapon    2.) Armor    0.)Back");
+                        Console.WriteLine("1.) Weapon / Armor    0.)Back");
                         choice = Console.ReadLine();
                         if (choice == "1")
                         {
-                            Console.WriteLine("Here are your weapon choices.");
-                            // Get Player Inventory List
-                            subChoice = Console.ReadLine();
+                            int subChoice;
+                            player.PrintList();
+                            Console.WriteLine("Here are your items you have.");
+                            subChoice = Convert.ToInt32(Console.ReadLine());
 
-                        }
-                        else if (choice == "2")
-                        {
-                            Console.WriteLine("Here are your armor choices.");
                             // Get Player Inventory List
-                            subChoice = Console.ReadLine();
+                            if (player.BuyingItem(subChoice - 1, shopkeeper))
+                            {
+                                Console.WriteLine("");
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("The shop doesn't have enough money to buy this");
+                            }
+                            Console.ReadKey();
+
 
                         }
                         else if (choice != "0")
@@ -215,8 +210,7 @@ namespace ShopRPG
                     else if (choice == "3")
                     {
                         Console.WriteLine("Item Inspection");
-                        shopkeeper.PrintWeapon();
-                        shopkeeper.PrintArmor();
+                        shopkeeper.PrintList();
                     }
                 }
             }

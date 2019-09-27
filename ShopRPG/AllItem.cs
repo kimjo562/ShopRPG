@@ -11,8 +11,7 @@ namespace ShopRPG
         protected string _name;
         protected string _description;
         protected int _cost;
-        protected int _damage;
-        protected int _defense;
+        protected int _stat;
 
         public virtual void Print()
         {
@@ -53,27 +52,16 @@ namespace ShopRPG
                 _cost = value;
             }
         }
-        public virtual int GetItemArmor()
+      
+        public virtual int GetItemStat()
         {
-            return _defense;
-        }
-        public virtual int Armor
-        {
-            set
-            {
-                _defense = value;
-            }
-        }
-
-        public virtual int GetItemWeapon()
-        {
-            return _damage;
+            return _stat;
         }
         public virtual int Weapon
         {
             set
             {
-                _damage = value;
+                _stat = value;
             }
         }
 

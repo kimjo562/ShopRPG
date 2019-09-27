@@ -10,6 +10,8 @@ namespace ShopRPG
     {
         AllItem[] storage = { /* Empty Bag */ };
         private AllItem[] _item = { };
+        private StoreItem[] _weapon = { };
+        private StoreItem[] _armor = { };
 
         public AllItem GetItem(int index)
         {
@@ -49,13 +51,16 @@ namespace ShopRPG
             _item = newAllItem;
         }
 
-        public void PrintItemPoolWeapon()
+
+
+
+        public void PrintItemPool()
         {
             int counter = 1;
             Console.WriteLine("List of Weapons:");
             foreach (AllItem i in _item)
             {
-                if (i is WeaponItem)
+                if (i is StoreItem)
                 {
                     Console.Write(counter + ")");
                     counter++;
@@ -65,22 +70,7 @@ namespace ShopRPG
             Console.WriteLine();
         }
 
-        public void PrintItemPoolArmor()
-        {
-            int counter = 1;
-            Console.WriteLine("List of Armors:");
-            foreach (AllItem i in _item)
-            {
-                if (i is ArmorItem)
-                {
-                    Console.Write(counter + ")");
-                    counter++;
-                    i.Print();
-                }
-            }
-            Console.WriteLine();
 
-        }
         /// <summary>
         /// int[] someArray ={1,2,3}
         /// somaeArray[0]
@@ -90,6 +80,7 @@ namespace ShopRPG
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        /// 
         public AllItem this[int index]              // CustomDataType (AllItem)
         {
             get                                     // Get Give the Instructions of Whatever        (Any logic can be implemented)

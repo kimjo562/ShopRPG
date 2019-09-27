@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class WeaponItem : AllItem
+    class StoreItem : AllItem
     {
-        public WeaponItem(string newName, int weaponDamage, int price, string description)
+        public StoreItem(string newName, int stat, int price, string description)
         {
             _name = newName;                        // Name of the Weapon
-            _damage = weaponDamage;                 // Damage it can do
+            _stat = stat;                           // Stat(Dmg/Def) it can do
             _cost = price;                          // The Price of the Weapon
             _description = description;             // The Description of said attack itme.
 
         }
 
-        public override int GetItemWeapon()
+        public override int GetItemStat()
         {
-            return _damage;
+            return _stat;
         }
         public override int Weapon
         {
             set
             {
-                _damage = value;
+                _stat = value;
             }
         }
         public override int GetCost()
@@ -53,7 +53,7 @@ namespace ShopRPG
 
         public override void Print()
         {
-            Console.WriteLine("\n  Name: " + GetName() + "\n  Damage: " + GetItemWeapon() + "\n  Description: " + GetDescription() + "\n  Cost: " + GetCost());
+            Console.WriteLine("\n  Name: " + GetName() + "\n  Damage: " + GetItemStat() + "\n  Description: " + GetDescription() + "\n  Cost: " + GetCost());
         }
 
 

@@ -19,15 +19,10 @@ namespace ShopRPG
             _name = name;
         }
 
-        public void PrintWeapon()
+        public void PrintList()
         {
-            playerInv.PrintItemPoolWeapon();
+            playerInv.PrintItemPool();
 
-        }
-        
-        public void PrintArmor()
-        {
-            playerInv.PrintItemPoolArmor();
         }
 
         public int getDatMoney
@@ -44,9 +39,28 @@ namespace ShopRPG
 
         public void Add(AllItem toPlayerInv)
         {
-            playerInv.Add(toPlayerInv);
-                
+            playerInv.Add(toPlayerInv);                
         }
+
+        public bool BuyingItem(int index, Shopkeeper shopkeeper)
+        {
+            AllItem temp = playerInv[index];
+
+            if (shopkeeper.getShopMoney /* watchItBurn */ < temp.GetCost())
+            {
+                // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+                temp.Print();
+                return false;
+            }
+            //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
+            Console.WriteLine("You have sucessfully sold " + temp.GetName() + " from your bag.");
+            getDatMoney += temp.GetCost();
+            shopkeeper.getShopMoney -= temp.GetCost();
+            playerInv.Remove(index);
+            shopkeeper.Add(temp);
+            return true;
+        }
+
 
     }
 }
