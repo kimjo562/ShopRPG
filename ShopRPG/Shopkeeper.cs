@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Shopkeeper
+    class Shopkeeper 
     {
         Inventory shopInv = new Inventory();
         AllItem temp = new AllItem();
 
-        int storeFunds = 0;
-        int playerFunds = 50000;
-
         public WeaponItem[] _weaponList = new WeaponItem[6];                      // [6] Inventory Limit
         public ArmorItem[] _armorList = new ArmorItem[6];                         // [6] Inventory Limit
+        int shopMoney = 3000;
+
 
         // Name, [Attack]/[Defense] Value, Price, Description
-
         public Shopkeeper()                                                                                                  // Will be used to call for items
         {
             // Populate the weapon list
@@ -48,6 +46,18 @@ namespace ShopRPG
             }
 
         }
+    
+        public int getShopMoney
+        {
+            get
+            {
+                return shopMoney;
+            }
+            set
+            {
+                shopMoney = value;
+            }
+        }
 
         public void PrintWeapon()
         {
@@ -61,21 +71,47 @@ namespace ShopRPG
 
         public bool SellingItem(int index, Player player)
         {
-            AllItem wepTemp = shopInv[index];
+            AllItem temp = shopInv[index];
+
+            if (player.getDatMoney /* watchItBurn */ < temp.GetCost())
+            {
+                // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+                temp.Print();
+                return false;
+            }
+            //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
+
+            Console.WriteLine("You have sucessfully bought " + temp.GetName() + " from the shop.");
+            player.getDatMoney -= temp.GetCost();
+            getShopMoney += temp.GetCost();
+            shopInv.Remove(index);
+            player.Add(temp);            
+
+            return true;
+        }
+
+        /*
+        public bool BuyingItem(int index, Player player)
+        {
+            AllItem temp = shopInv[index];
 
             if (player.getDatMoney < temp.GetCost())
             {
                 // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
                 temp.Print();
-                return false; 
+                return false;
             }
             //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
 
+            Console.WriteLine("You have sucessfully bought " + temp.GetName() + " from the shop.");
+            player.getDatMoney -= temp.GetCost();
+            getShopMoney += temp.GetCost();
+            shopInv.Remove(index);
+
+
             return true;
-           
         }
-
-
+*/
     }
 }
 

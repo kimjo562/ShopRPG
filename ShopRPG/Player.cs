@@ -6,35 +6,47 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Player                                                                                // Type 
+    class Player 
     {
         Inventory playerInv = new Inventory();
 
         private string _name = " ";
-        private int money = 1000;
+        private int playerMoney = 1000;
+        public int _potionHeld = 0;
+
         public Player(string name)
         {
             _name = name;
         }
 
-        public void Print()
+        public void PrintWeapon()
         {
             playerInv.PrintItemPoolWeapon();
+
+        }
+        
+        public void PrintArmor()
+        {
             playerInv.PrintItemPoolArmor();
         }
+
         public int getDatMoney
         {
             get
             {
-                return money;
+                return playerMoney;
+            }
+            set
+            {
+                playerMoney = value;
             }
         }
 
-        public AllItem GetItem(int index)
+        public void Add(AllItem toPlayerInv)
         {
-         return playerInv.GetItem(index);
+            playerInv.Add(toPlayerInv);
+                
         }
-
 
     }
 }

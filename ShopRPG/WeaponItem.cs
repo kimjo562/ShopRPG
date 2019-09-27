@@ -11,7 +11,7 @@ namespace ShopRPG
         public WeaponItem(string newName, int weaponDamage, int price, string description)
         {
             _name = newName;                        // Name of the Weapon
-            _damage = weaponDamage;                // Damage it can do
+            _damage = weaponDamage;                 // Damage it can do
             _cost = price;                          // The Price of the Weapon
             _description = description;             // The Description of said attack itme.
 

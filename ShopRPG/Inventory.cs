@@ -10,10 +10,6 @@ namespace ShopRPG
     {
         AllItem[] storage = { /* Empty Bag */ };
         private AllItem[] _item = { };
-        int storeFunds = 0;
-        int playerFunds = 0;
-
-
 
         public AllItem GetItem(int index)
         {
@@ -98,11 +94,11 @@ namespace ShopRPG
         {
             get                                     // Get Give the Instructions of Whatever        (Any logic can be implemented)
             {
-                return storage[index];              
+                return _item[index];              
             }
             set                                     // Set is Do whatever the (get) instuction stated.
             {
-                storage[index] = value;
+                _item[index] = value;
             }
         }
 
