@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Player 
+    class Player
     {
         Inventory playerInv = new Inventory();
 
         private string _name = " ";
         private int playerMoney = 1000;
         public int _potionHeld = 0;
+
+        public void StarterWeapon()
+        {
+            // Gives this Player a Starting Item in their inventory
+            playerInv.Add(new AttackItem("Yeet Sword", 1337, 420, "LeetYeetSwordBoi"));
+        }
 
         public Player(string name)
         {
@@ -25,6 +32,7 @@ namespace ShopRPG
 
         }
 
+        // Grabs Money Function from player
         public int getDatMoney
         {
             get
@@ -39,9 +47,10 @@ namespace ShopRPG
 
         public void Add(AllItem toPlayerInv)
         {
-            playerInv.Add(toPlayerInv);                
+            playerInv.Add(toPlayerInv);
         }
 
+        // Player buying from Shopkeeper Function
         public bool BuyingItem(int index, Shopkeeper shopkeeper)
         {
             AllItem temp = playerInv[index];
@@ -52,13 +61,25 @@ namespace ShopRPG
                 temp.Print();
                 return false;
             }
-            //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
+            //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (SHOPKEEPER BUYING FROM player))
             Console.WriteLine("You have sucessfully sold " + temp.GetName() + " from your bag.");
             getDatMoney += temp.GetCost();
             shopkeeper.getShopMoney -= temp.GetCost();
             playerInv.Remove(index);
             shopkeeper.Add(temp);
             return true;
+
+        }
+
+        // Player Inventory Save
+        public void Save(string playerInventorySave)
+        {
+            playerInv.PlayerSave(playerInventorySave, playerInv);
+        }
+
+        public int GetLength()
+        {
+            return playerInv.GetLength();
         }
 
     }

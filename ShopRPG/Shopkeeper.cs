@@ -15,7 +15,7 @@ namespace ShopRPG
         // Name, [Attack]/[Defense] Value, Price, Description
         public Shopkeeper()                                                                                                  // Will be used to call for items
         {
-            // Populate the weapon list
+            // Populate the weapon list and puts in a temp variable and puts it in an array
             temp = new AttackItem("Great Sword", 50, 800, "This is a Great Sword...");
             shopInv.Add(temp);
             temp = new AttackItem("Sword", 25, 300, "This is a Sword...");
@@ -29,7 +29,7 @@ namespace ShopRPG
             temp = new AttackItem("Whip", 15, 200, "This is a Whip...");
             shopInv.Add(temp);
 
-            // Populate the armor list
+            // Populate the armor list and puts in a temp variable and puts it in an array
             temp = new DefenseItem("Leather Armor", 15, 100, "This is a Leather Armor ...");
             shopInv.Add(temp);
             temp = new DefenseItem("Chain Armor", 20, 300, "This is a Chain Armor ...");
@@ -86,6 +86,12 @@ namespace ShopRPG
             return true;
         }
 
+        public int GetLength()
+        {
+            return shopInv.GetLength();
+        }
+
+        // The SuperUser Command Function
         public void SuperAdmin(Player player)
         {
             AllItem item = new AllItem();
@@ -94,7 +100,7 @@ namespace ShopRPG
             string itemDesc = "";
             int itemstat;
             int itemcost;
-            
+
 
             Console.WriteLine("Debug Mode Activated\n");
             while (choice != "back")
@@ -107,7 +113,7 @@ namespace ShopRPG
                 {
                     Console.WriteLine("weapon, armor");
                     choice = Console.ReadLine();
-                    if(choice == "weapon")
+                    if (choice == "weapon")
                     {
                         Console.WriteLine("\nGive the new item a name.");
                         itemname = Console.ReadLine();
@@ -124,7 +130,7 @@ namespace ShopRPG
                         item = new AttackItem(itemname, itemstat, itemcost, itemDesc);
                         shopInv.Add(item);
                     }
-                    else if(choice == "armor")
+                    else if (choice == "armor")
                     {
                         Console.WriteLine("\nGive the new item a name.");
                         itemname = Console.ReadLine();
@@ -155,6 +161,11 @@ namespace ShopRPG
                     Console.WriteLine("Now returning to main menu.\n");
                 }
             }
+        }
+
+        public void Save(string shopInventorySave)
+        {
+            shopInv.ShopSave(shopInventorySave, shopInv);
         }
 
     }

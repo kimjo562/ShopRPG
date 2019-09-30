@@ -52,7 +52,7 @@ namespace ShopRPG
                 _cost = value;
             }
         }
-      
+
         public virtual int GetItemStat()
         {
             return _stat;

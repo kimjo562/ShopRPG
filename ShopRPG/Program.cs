@@ -11,15 +11,13 @@ namespace ShopRPG
     {                                                                                                                                               // class Program Bracket
         static void Main(string[] args)
         {                                                                                                                                           //static void Main Bracket
-            string playerSave = "playerSave.txt";               // Player Inventory Save File
-            string shopSave = "shopSave.txt";                   // Shop Inventory Save File
-
             Player player = new Player("TesterBoi");
             Shopkeeper shopkeeper = new Shopkeeper();
 
             string choice = "";
             while (choice != "Q")
             {
+                player.StarterWeapon();
                 Console.WriteLine("Hello there.\n1.) Inventory \n2.) Shop \n3.) Save \n4.) Load \nQ.) Quit");
                 choice = Console.ReadLine();
                 Console.WriteLine("");
@@ -36,12 +34,14 @@ namespace ShopRPG
                 }
                 else if (choice == "3")
                 {
-
+                    shopkeeper.Save("shopSave.txt");
+                    player.Save("playerSave.txt");
                     choice = " ";
                 }
                 else if (choice == "4")
                 {
-
+                    //                 int triggered = player.GetLength();
+                    //               Console.WriteLine(triggered);
                     choice = " ";
                 }
                 else if (choice == "error404stillalive")
@@ -86,7 +86,7 @@ namespace ShopRPG
                     // Display Menu
                     Console.WriteLine("Shop Menu");
                     Console.WriteLine("------------------------------------------------");
-                    Console.WriteLine("Store Funds: " + shopkeeper.getShopMoney);
+                    Console.WriteLine("Store Funds: " + shopkeeper.getShopMoney + "                Player Funds: " + player.getDatMoney);
                     Console.WriteLine("1.) Buy Items \n2.) Sell Items \n3.) Inspect Items \nQ.) Leave");
 
                     //Get input
@@ -102,23 +102,29 @@ namespace ShopRPG
                         choice = Console.ReadLine();
                         if (choice == "1")
                         {
-                            // Add Array of Shop Weapons here.
-                            shopkeeper.PrintList();
-                            Console.WriteLine("Here are your weapon choices.");
-                            subChoice = Convert.ToInt32(Console.ReadLine());
-
-                            // When player buys item from List  (Number: Dictates the Index Array Number)
-                            if (shopkeeper.SellingItem(subChoice - 1, player))
+                            if (shopkeeper.GetLength() > 0)
                             {
-                                Console.WriteLine("");
+                                // Add Array of Shop Weapons here.
+                                shopkeeper.PrintList();
+                                Console.WriteLine("Here are your weapon choices.");
+                                subChoice = Convert.ToInt32(Console.ReadLine());
 
+                                // When player buys item from List  (Number: Dictates the Index Array Number)
+                                if (shopkeeper.SellingItem(subChoice - 1, player))
+                                {
+                                    Console.WriteLine("");
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You don't have enough money to buy this");
+                                }
+                                Console.ReadKey();
                             }
                             else
                             {
-                                Console.WriteLine("You don't have enough money to buy this");
+                                Console.WriteLine("But the shopkeeper has nothing left.");
                             }
-                            Console.ReadKey();
-
                         }
                         else if (choice == "2")
                         {
@@ -157,23 +163,28 @@ namespace ShopRPG
                         choice = Console.ReadLine();
                         if (choice == "1")
                         {
-                            int subChoice;
-                            player.PrintList();
-                            Console.WriteLine("Here are your items you have.");
-                            subChoice = Convert.ToInt32(Console.ReadLine());
-
-                            // Get Player Inventory List
-                            if (player.BuyingItem(subChoice - 1, shopkeeper))
+                            if (player.GetLength() > 0)
                             {
-                                Console.WriteLine("");
+                                int subChoice;
+                                player.PrintList();
+                                Console.WriteLine("Here are your items you have.");
+                                subChoice = Convert.ToInt32(Console.ReadLine());
 
+                                // Get Player Inventory List
+                                if (player.BuyingItem(subChoice - 1, shopkeeper))
+                                {
+                                    Console.WriteLine("");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("The shop doesn't have enough money to buy this");
+                                }
+                                Console.ReadKey();
                             }
                             else
                             {
-                                Console.WriteLine("The shop doesn't have enough money to buy this");
+                                Console.WriteLine("\nYou don't have anything to sell -.-\n");
                             }
-                            Console.ReadKey();
-
 
                         }
                         else if (choice != "0")
@@ -191,36 +202,5 @@ namespace ShopRPG
                 }
             }
         }                                                                                                                                           //static void Main Bracket
-
-
-
-        static void Save(string shopSaveLocation, string playerSaveLocation)
-        {   // Creates a (shopSave & playerSave) for the file at our path
-            StreamWriter shopSave = File.CreateText(shopSaveLocation);
-            StreamWriter playerSave = File.CreateText(playerSaveLocation);
-
-            // Closes it
-            shopSave.Close();
-            playerSave.Close();
-        }
-
-        static void Load(string shopSaveLocation, string playerSaveLocation)
-        {
-            if (File.Exists(shopSaveLocation) && File.Exists(playerSaveLocation))
-            {   // Create a (shopSave & playerSave) object for the file at our path
-                StreamReader shopSave = File.OpenText(shopSaveLocation);
-                StreamReader playerSave = File.OpenText(playerSaveLocation);
-
-                shopSave.Close();
-                playerSave.Close();
-            }
-            else
-            {
-                Console.WriteLine("Save File not found.");
-            }
-
-        }
-
     }                                                                                                                                               // class Program Bracket
-
 }

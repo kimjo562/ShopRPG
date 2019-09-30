@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class Inventory 
+    class Inventory
     {
         AllItem[] storage = { /* Empty Bag */ };
         private AllItem[] _item = { };
@@ -68,23 +69,11 @@ namespace ShopRPG
             Console.WriteLine();
         }
 
-
-        /// <summary>
-        /// int[] someArray ={1,2,3}
-        /// somaeArray[0]
-        /// AllItem itemlist;
-        /// itemlist[0]
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        /// 
-
         public AllItem this[int index]              // CustomDataType (AllItem)
         {
             get                                     // Get Give the Instructions of Whatever        (Any logic can be implemented)
             {
-                return _item[index];              
+                return _item[index];
             }
             set                                     // Set is Do whatever the (get) instuction stated.
             {
@@ -92,6 +81,82 @@ namespace ShopRPG
             }
         }
 
-        
+        public void ShopSave(string shopInventorySave, Inventory inventory)
+        {   // Creates a (shopSave & playerSave) for the file at our path
+            StreamWriter shopSave = File.CreateText(shopInventorySave);
+            AllItem[] itemSave = GetItemList();
+
+            Console.WriteLine("File Saved.");
+            foreach (AllItem i in itemSave)
+            {
+                shopSave.WriteLine(i.GetName());
+                shopSave.WriteLine(i.GetItemStat());
+                shopSave.WriteLine(i.GetCost());
+                shopSave.WriteLine(i.GetDescription());
+
+            }
+
+            // Closes it
+            shopSave.Close();
+        }
+
+        public void PlayerSave(string playerInventorySave, Inventory inventory)
+        {   // Creates a (shopSave & playerSave) for the file at our path
+            StreamWriter playerSave = File.CreateText(playerInventorySave);
+            AllItem[] itemSave = GetItemList();
+
+            foreach (AllItem i in itemSave)
+            {
+                playerSave.WriteLine(i.GetName());
+                playerSave.WriteLine(i.GetItemStat());
+                playerSave.WriteLine(i.GetCost());
+                playerSave.WriteLine(i.GetDescription());
+            }
+
+            // Closes it
+            playerSave.Close();
+        }
+
+        public void ShopLoad(string shopInventorySave, Inventory inventory)
+        {
+            if (File.Exists(shopInventorySave) && File.Exists(shopInventorySave))
+            {   // Create a (shopSave & playerSave) object for the file at our path
+                StreamReader shopSave = File.OpenText(shopInventorySave);
+
+                shopSave.Close();
+            }
+            else
+            {
+                Console.WriteLine("Save File not found.");
+            }
+
+        }
+
+        public void PlayerLoad(string playerInventorySave, Inventory inventory)
+        {
+            if (File.Exists(playerInventorySave) && File.Exists(playerInventorySave))
+            {   // Create a (shopSave & playerSave) object for the file at our path
+                StreamReader playerSave = File.OpenText(playerInventorySave);
+
+                playerSave.Close();
+            }
+            else
+            {
+                Console.WriteLine("Save File not found.");
+            }
+
+        }
+
+        public AllItem[] GetItemList()
+        {
+            return _item;
+        }
+
+
+        public int GetLength()
+        {
+            return _item.Length;
+        }
+
     }
 }
