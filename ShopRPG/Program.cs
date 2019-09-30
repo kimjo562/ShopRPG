@@ -44,33 +44,9 @@ namespace ShopRPG
 
                     choice = " ";
                 }
-                else if (choice == "error404stillaliveinside")
+                else if (choice == "error404stillalive")
                 {
-                    Console.WriteLine("Debug Mode Activated\n");
-                    while (choice != "back")
-                    {
-                        int debug = 0;
-                        Console.WriteLine("Debug Mode (Active)");
-                        Console.WriteLine("additem, addgold, back");
-                        choice = Console.ReadLine();
-                        if (choice == "additem")
-                        {
-
-
-                        }
-                        else if (choice == "addgold")
-                        {
-                            Console.WriteLine("How much player gold will you give?");
-                            debug = Convert.ToInt32(Console.ReadLine());
-
-                            player.getDatMoney += debug;
-                            Console.WriteLine("You have given yourself " + debug + " gold.\n");
-                        }
-                        else if (choice == "back")
-                        {
-                            Console.WriteLine("Now returning to main menu.\n");
-                        }
-                    }
+                    shopkeeper.SuperAdmin(player);
                 }
 
             }
@@ -215,6 +191,7 @@ namespace ShopRPG
                 }
             }
         }                                                                                                                                           //static void Main Bracket
+
 
 
         static void Save(string shopSaveLocation, string playerSaveLocation)

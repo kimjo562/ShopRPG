@@ -10,33 +10,38 @@ namespace ShopRPG
     {
         Inventory shopInv = new Inventory();
         AllItem temp = new AllItem();
-
-        public StoreItem[] _storeItemList = new StoreItem[12];                      // [12] Inventory Limit
         int shopMoney = 3000;
 
         // Name, [Attack]/[Defense] Value, Price, Description
         public Shopkeeper()                                                                                                  // Will be used to call for items
         {
             // Populate the weapon list
-            _storeItemList[0] = new StoreItem("Great Sword", 50, 800, "This is a Great Sword...");
-            _storeItemList[1] = new StoreItem("Sword", 25, 300, "This is a Sword...");
-            _storeItemList[2] = new StoreItem("Dagger", 20, 250, "This is a Dagger...");
-            _storeItemList[3] = new StoreItem("Spear", 30, 350, "This is a Spear...");
-            _storeItemList[4] = new StoreItem("Bow", 25, 300, "This is a Bow...");
-            _storeItemList[5] = new StoreItem("Whip", 15, 200, "This is a Whip...");
+            temp = new AttackItem("Great Sword", 50, 800, "This is a Great Sword...");
+            shopInv.Add(temp);
+            temp = new AttackItem("Sword", 25, 300, "This is a Sword...");
+            shopInv.Add(temp);
+            temp = new AttackItem("Dagger", 20, 250, "This is a Dagger...");
+            shopInv.Add(temp);
+            temp = new AttackItem("Spear", 30, 350, "This is a Spear...");
+            shopInv.Add(temp);
+            temp = new AttackItem("Bow", 25, 300, "This is a Bow...");
+            shopInv.Add(temp);
+            temp = new AttackItem("Whip", 15, 200, "This is a Whip...");
+            shopInv.Add(temp);
 
             // Populate the armor list
-            _storeItemList[6] = new StoreItem("Leather Armor", 15, 100, "This is a Leather Armor ...");
-            _storeItemList[7] = new StoreItem("Chain Armor", 20, 300, "This is a Chain Armor ...");
-            _storeItemList[8] = new StoreItem("Iron Armor", 30, 750, "This is a Iron Armor ...");
-            _storeItemList[9] = new StoreItem("Cloth Armor", 5, 50, "This is a Cloth Armor ...");
-            _storeItemList[10] = new StoreItem("Dragon Armor", 100, 5000, "This is a Dragon Armor ...");
-            _storeItemList[11] = new StoreItem("Bronze Armor", 25, 500, "This is a Bronze Armor ...");
-
-            foreach (AllItem i in _storeItemList)
-            {
-                shopInv.Add(i);
-            }
+            temp = new DefenseItem("Leather Armor", 15, 100, "This is a Leather Armor ...");
+            shopInv.Add(temp);
+            temp = new DefenseItem("Chain Armor", 20, 300, "This is a Chain Armor ...");
+            shopInv.Add(temp);
+            temp = new DefenseItem("Iron Armor", 30, 750, "This is a Iron Armor ...");
+            shopInv.Add(temp);
+            temp = new DefenseItem("Cloth Armor", 5, 50, "This is a Cloth Armor ...");
+            shopInv.Add(temp);
+            temp = new DefenseItem("Dragon Armor", 100, 5000, "This is a Dragon Armor ...");
+            shopInv.Add(temp);
+            temp = new DefenseItem("Bronze Armor", 25, 500, "This is a Bronze Armor ...");
+            shopInv.Add(temp);
 
         }
 
@@ -81,7 +86,76 @@ namespace ShopRPG
             return true;
         }
 
-      
+        public void SuperAdmin(Player player)
+        {
+            AllItem item = new AllItem();
+            string choice = "";
+            string itemname = "";
+            string itemDesc = "";
+            int itemstat;
+            int itemcost;
+            
+
+            Console.WriteLine("Debug Mode Activated\n");
+            while (choice != "back")
+            {
+                int debug = 0;
+                Console.WriteLine("Debug Mode (Active)");
+                Console.WriteLine("additem, addgold, back");
+                choice = Console.ReadLine();
+                if (choice == "additem")
+                {
+                    Console.WriteLine("weapon, armor");
+                    choice = Console.ReadLine();
+                    if(choice == "weapon")
+                    {
+                        Console.WriteLine("\nGive the new item a name.");
+                        itemname = Console.ReadLine();
+                        Console.WriteLine("\nGive the new item an Attack stat.");
+                        itemstat = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("\nGive the new item a price.");
+                        itemcost = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("\nGive the new item a description.");
+                        itemDesc = Console.ReadLine();
+
+                        Console.WriteLine("Your new item has been added to the shop.\n");
+                        Console.ReadKey();
+
+                        item = new AttackItem(itemname, itemstat, itemcost, itemDesc);
+                        shopInv.Add(item);
+                    }
+                    else if(choice == "armor")
+                    {
+                        Console.WriteLine("\nGive the new item a name.");
+                        itemname = Console.ReadLine();
+                        Console.WriteLine("\nGive the new item an Defense stat.");
+                        itemstat = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("\nGive the new item a price.");
+                        itemcost = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("\nGive the new item a description.");
+                        itemDesc = Console.ReadLine();
+
+                        Console.WriteLine("Your new item has been added to the shop.\n");
+                        Console.ReadKey();
+
+                        item = new DefenseItem(itemname, itemstat, itemcost, itemDesc);
+                        shopInv.Add(item);
+                    }
+
+                }
+                else if (choice == "addgold")
+                {
+                    Console.WriteLine("How much player gold will you give?");
+                    debug = Convert.ToInt32(Console.ReadLine());
+                    player.getDatMoney += debug;
+                    Console.WriteLine("You have given yourself " + debug + " gold.\n");
+                }
+                else if (choice == "back")
+                {
+                    Console.WriteLine("Now returning to main menu.\n");
+                }
+            }
+        }
 
     }
 }

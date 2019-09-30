@@ -61,6 +61,5 @@ namespace ShopRPG
             return true;
         }
 
-
     }
 }

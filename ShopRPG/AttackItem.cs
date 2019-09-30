@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace ShopRPG
 {
-    class StoreItem : AllItem
+    class AttackItem : AllItem
     {
-        public StoreItem(string newName, int stat, int price, string description)
+
+        public AttackItem(string newName, int weaponDamage, int price, string description)
         {
             _name = newName;                        // Name of the Weapon
-            _stat = stat;                           // Stat(Dmg/Def) it can do
+            _stat = weaponDamage;                   // Damage it can do
             _cost = price;                          // The Price of the Weapon
             _description = description;             // The Description of said attack itme.
 
         }
 
-        public override int GetItemStat()
+        public int GetItemDamage()
         {
             return _stat;
         }
-        public override int Weapon
+        public int ItemDamage
         {
             set
             {
@@ -53,9 +54,10 @@ namespace ShopRPG
 
         public override void Print()
         {
-            Console.WriteLine("\n  Name: " + GetName() + "\n  Damage: " + GetItemStat() + "\n  Description: " + GetDescription() + "\n  Cost: " + GetCost());
+            Console.WriteLine("\n  Name: " + GetName() + "\n  Defense: " + GetItemDamage() + "\n  Description: " + GetDescription() + "\n  Cost: " + GetCost());
         }
 
-
     }
+
 }
+

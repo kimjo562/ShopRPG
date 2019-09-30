@@ -57,7 +57,7 @@ namespace ShopRPG
         {
             return _stat;
         }
-        public virtual int Weapon
+        public virtual int Stats
         {
             set
             {
