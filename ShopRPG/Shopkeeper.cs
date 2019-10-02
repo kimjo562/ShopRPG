@@ -165,12 +165,12 @@ namespace ShopRPG
 
         public void Save(string shopInventorySave)
         {
-            shopInv.ShopSave(shopInventorySave, shopInv);
+            shopInv.ShopSave(shopInventorySave, shopInv, this);
         }
 
         public void Load(string shopInventorySave)
         {
-            shopInv.ShopLoad(shopInventorySave, shopInv);
+            shopInv.ShopLoad(shopInventorySave, shopInv, this);
         }
 
     }

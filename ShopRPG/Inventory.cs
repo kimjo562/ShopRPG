@@ -81,11 +81,12 @@ namespace ShopRPG
             }
         }
 
-        public void ShopSave(string shopInventorySave, Inventory inventory)
+        public void ShopSave(string shopInventorySave, Inventory inventory, Shopkeeper shopkeeper)
         {   // Creates a (shopSave & playerSave) for the file at our path
             StreamWriter shopSave = File.CreateText(shopInventorySave);
             AllItem[] itemSave = GetItemList();
 
+            shopSave.WriteLine(shopkeeper.getShopMoney);
             foreach (AllItem i in itemSave)
             {
                 if (i is AttackItem)
@@ -106,11 +107,12 @@ namespace ShopRPG
             shopSave.Close();
         }
 
-        public void PlayerSave(string playerInventorySave, Inventory inventory)
+        public void PlayerSave(string playerInventorySave, Inventory inventory, Player player)
         {   // Creates a (shopSave & playerSave) for the file at our path
             StreamWriter playerSave = File.CreateText(playerInventorySave);
             AllItem[] itemSave = GetItemList();
 
+            playerSave.WriteLine(player.getDatMoney);
             foreach (AllItem i in itemSave)
             {
                 if (i is AttackItem)
@@ -131,7 +133,7 @@ namespace ShopRPG
             playerSave.Close();
         }
 
-        public void ShopLoad(string shopInventorySave, Inventory inventory)
+        public void ShopLoad(string shopInventorySave, Inventory inventory, Shopkeeper shopkeeper)
         {
             if (File.Exists(shopInventorySave))
             {   // Create a (shopSave & playerSave) object for the file at our path
@@ -146,6 +148,7 @@ namespace ShopRPG
 
                 Clear();
                 StreamReader ShopSaveLoad = File.OpenText(shopInventorySave);
+                shopkeeper.getShopMoney = Convert.ToInt32(ShopSaveLoad.ReadLine());
                 while (loading)
                 {
                     loading = false;
@@ -182,7 +185,7 @@ namespace ShopRPG
 
         }
 
-        public void PlayerLoad(string playerInventorySave, Inventory inventory)
+        public void PlayerLoad(string playerInventorySave, Inventory inventory, Player player)
         {
             if (File.Exists(playerInventorySave))
             {   // Create a (shopSave & playerSave) object for the file at our path
@@ -197,6 +200,7 @@ namespace ShopRPG
 
                 Clear();
                 StreamReader playerSaveLoad = File.OpenText(playerInventorySave);
+                player.getDatMoney = Convert.ToInt32(playerSaveLoad.ReadLine());
                 while (loading)
                 {
                     loading = false;

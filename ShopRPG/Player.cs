@@ -69,13 +69,13 @@ namespace ShopRPG
         // Player Inventory Save
         public void Save(string playerInventorySave)
         {
-            playerInv.PlayerSave(playerInventorySave, playerInv);
+            playerInv.PlayerSave(playerInventorySave, playerInv, this);
         }
 
         // Player Inventory Load
         public void Load(string playerInventorySave)
         {
-            playerInv.PlayerLoad(playerInventorySave, playerInv);
+            playerInv.PlayerLoad(playerInventorySave, playerInv, this);
         }
 
         public int GetLength()
