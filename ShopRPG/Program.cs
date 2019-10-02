@@ -17,7 +17,6 @@ namespace ShopRPG
             string choice = "";
             while (choice != "Q")
             {
-                player.StarterWeapon();
                 Console.WriteLine("Hello there.\n1.) Inventory \n2.) Shop \n3.) Save \n4.) Load \nQ.) Quit");
                 choice = Console.ReadLine();
                 Console.WriteLine("");
@@ -34,14 +33,16 @@ namespace ShopRPG
                 }
                 else if (choice == "3")
                 {
+                    Console.WriteLine("Shop file saved.");
                     shopkeeper.Save("shopSave.txt");
+                    Console.WriteLine("Player file saved.");
                     player.Save("playerSave.txt");
                     choice = " ";
                 }
                 else if (choice == "4")
                 {
-                    //                 int triggered = player.GetLength();
-                    //               Console.WriteLine(triggered);
+                    shopkeeper.Load("shopSave.txt");
+                    player.Load("playerSave.txt");
                     choice = " ";
                 }
                 else if (choice == "error404stillalive")

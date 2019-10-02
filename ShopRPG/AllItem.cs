@@ -65,5 +65,15 @@ namespace ShopRPG
             }
         }
 
+        public void Load(string name, int stat, int cost, string desc)
+        {
+            _name = name;
+            _stat = stat;
+            _cost = cost;
+            _description = desc;
+
+        }
+
+
     }
 }

@@ -86,16 +86,22 @@ namespace ShopRPG
             StreamWriter shopSave = File.CreateText(shopInventorySave);
             AllItem[] itemSave = GetItemList();
 
-            Console.WriteLine("File Saved.");
             foreach (AllItem i in itemSave)
             {
+                if (i is AttackItem)
+                {
+                    shopSave.WriteLine("Weapon");
+                }
+                if (i is DefenseItem)
+                {
+                    shopSave.WriteLine("Armor");
+                }
                 shopSave.WriteLine(i.GetName());
                 shopSave.WriteLine(i.GetItemStat());
                 shopSave.WriteLine(i.GetCost());
                 shopSave.WriteLine(i.GetDescription());
-
             }
-
+            shopSave.WriteLine(" ");
             // Closes it
             shopSave.Close();
         }
@@ -107,23 +113,67 @@ namespace ShopRPG
 
             foreach (AllItem i in itemSave)
             {
+                if (i is AttackItem)
+                {
+                    playerSave.WriteLine("Weapon");
+                }
+                if (i is DefenseItem)
+                {
+                    playerSave.WriteLine("Armor");
+                }
                 playerSave.WriteLine(i.GetName());
                 playerSave.WriteLine(i.GetItemStat());
                 playerSave.WriteLine(i.GetCost());
                 playerSave.WriteLine(i.GetDescription());
             }
-
+            playerSave.WriteLine(" ");
             // Closes it
             playerSave.Close();
         }
 
         public void ShopLoad(string shopInventorySave, Inventory inventory)
         {
-            if (File.Exists(shopInventorySave) && File.Exists(shopInventorySave))
+            if (File.Exists(shopInventorySave))
             {   // Create a (shopSave & playerSave) object for the file at our path
-                StreamReader shopSave = File.OpenText(shopInventorySave);
+                AllItem newitem;
+                string temp;
+                string name;
+                int stat;
+                int cost;
+                string desc;
+                bool loading = true;
 
-                shopSave.Close();
+
+                Clear();
+                StreamReader ShopSaveLoad = File.OpenText(shopInventorySave);
+                while (loading)
+                {
+                    loading = false;
+                    temp = ShopSaveLoad.ReadLine();
+                    if (temp != " ")
+                    {
+                        loading = true;
+                        name = (ShopSaveLoad.ReadLine());
+                        stat = Convert.ToInt32(ShopSaveLoad.ReadLine());
+                        cost = Convert.ToInt32(ShopSaveLoad.ReadLine());
+                        desc = (ShopSaveLoad.ReadLine());
+                        if (temp == "Weapon")
+                        {
+                            newitem = new AttackItem(name, stat, cost, desc);
+                        }
+                        else if (temp == "Armor")
+                        {
+                            newitem = new DefenseItem(name, stat, cost, desc);
+                        }
+                        else
+                        {
+                            newitem = new AllItem();
+                        }
+                        Add(newitem);
+                    }
+                }
+                ShopSaveLoad.Close();
+                Console.WriteLine("Shop File Loaded.");
             }
             else
             {
@@ -134,11 +184,47 @@ namespace ShopRPG
 
         public void PlayerLoad(string playerInventorySave, Inventory inventory)
         {
-            if (File.Exists(playerInventorySave) && File.Exists(playerInventorySave))
+            if (File.Exists(playerInventorySave))
             {   // Create a (shopSave & playerSave) object for the file at our path
-                StreamReader playerSave = File.OpenText(playerInventorySave);
+                AllItem newitem;
+                string temp;
+                string name;
+                int stat;
+                int cost;
+                string desc;
+                bool loading = true;
 
-                playerSave.Close();
+
+                Clear();
+                StreamReader playerSaveLoad = File.OpenText(playerInventorySave);
+                while (loading)
+                {
+                    loading = false;
+                    temp = playerSaveLoad.ReadLine();
+                    if (temp != " ")
+                    {
+                        loading = true;
+                        name = (playerSaveLoad.ReadLine());
+                        stat = Convert.ToInt32(playerSaveLoad.ReadLine());
+                        cost = Convert.ToInt32(playerSaveLoad.ReadLine());
+                        desc = (playerSaveLoad.ReadLine());
+                        if (temp == "Weapon")
+                        {
+                            newitem = new AttackItem(name, stat, cost, desc);
+                        }
+                        else if (temp == "Armor")
+                        {
+                            newitem = new DefenseItem(name, stat, cost, desc);
+                        }
+                        else
+                        {
+                            newitem = new AllItem();
+                        }
+                        Add(newitem);
+                    }
+                }
+                playerSaveLoad.Close();
+                Console.WriteLine("Player File Loaded.");
             }
             else
             {
@@ -158,5 +244,10 @@ namespace ShopRPG
             return _item.Length;
         }
 
+
+        public void Clear()
+        {
+            _item = new AllItem[0];
+        }
     }
 }

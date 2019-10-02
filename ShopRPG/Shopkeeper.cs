@@ -168,6 +168,11 @@ namespace ShopRPG
             shopInv.ShopSave(shopInventorySave, shopInv);
         }
 
+        public void Load(string shopInventorySave)
+        {
+            shopInv.ShopLoad(shopInventorySave, shopInv);
+        }
+
     }
 }
 

@@ -15,15 +15,10 @@ namespace ShopRPG
         private int playerMoney = 1000;
         public int _potionHeld = 0;
 
-        public void StarterWeapon()
-        {
-            // Gives this Player a Starting Item in their inventory
-            playerInv.Add(new AttackItem("Yeet Sword", 1337, 420, "LeetYeetSwordBoi"));
-        }
-
-        public Player(string name)
+        public Player(string name)                                                      // Constructor What makes player a player.
         {
             _name = name;
+            playerInv.Add(new AttackItem("Yeet Sword", 1337, 420, "LeetYeetSwordBoi"));
         }
 
         public void PrintList()
@@ -77,10 +72,17 @@ namespace ShopRPG
             playerInv.PlayerSave(playerInventorySave, playerInv);
         }
 
+        // Player Inventory Load
+        public void Load(string playerInventorySave)
+        {
+            playerInv.PlayerLoad(playerInventorySave, playerInv);
+        }
+
         public int GetLength()
         {
             return playerInv.GetLength();
         }
+
 
     }
 }
