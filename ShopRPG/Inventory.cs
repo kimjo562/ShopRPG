@@ -52,7 +52,6 @@ namespace ShopRPG
             _item = newAllItem;
         }
 
-
         public void PrintItemPool()
         {
             int counter = 1;
@@ -146,7 +145,6 @@ namespace ShopRPG
                 string desc;
                 bool loading = true;
 
-
                 Clear();
                 StreamReader ShopSaveLoad = File.OpenText(shopInventorySave);
                 shopkeeper.getShopMoney = Convert.ToInt32(ShopSaveLoad.ReadLine());
@@ -183,7 +181,6 @@ namespace ShopRPG
             {
                 Console.WriteLine("Save File not found.");
             }
-
         }
 
         public void PlayerLoad(string playerInventorySave, Inventory inventory, Player player)
@@ -197,7 +194,6 @@ namespace ShopRPG
                 int cost;
                 string desc;
                 bool loading = true;
-
 
                 Clear();
                 StreamReader playerSaveLoad = File.OpenText(playerInventorySave);
@@ -236,7 +232,6 @@ namespace ShopRPG
             {
                 Console.WriteLine("Save File not found.");
             }
-
         }
 
         public AllItem[] GetItemList()

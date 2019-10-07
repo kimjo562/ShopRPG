@@ -65,6 +65,5 @@ namespace ShopRPG
                 _stat = value;
             }
         }
-
     }
 }

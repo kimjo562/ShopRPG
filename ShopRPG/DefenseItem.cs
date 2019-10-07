@@ -57,6 +57,5 @@ namespace ShopRPG
         {
             Console.WriteLine("\n  Name: " + Name + "\n  Defense: " + ItemDefense + "\n  Description: " + Description + "\n  Cost: " + Cost);
         }
-
     }
 }

@@ -8,7 +8,6 @@ namespace ShopRPG
 {
     class AttackItem : AllItem
     {
-
         public AttackItem(string newName, int weaponDamage, int price, string description)
         {
             _name = newName;                        // Name of the Weapon
@@ -58,8 +57,6 @@ namespace ShopRPG
         {
             Console.WriteLine("\n  Name: " + Name + "\n  Defense: " + ItemDamage + "\n  Description: " + Description + "\n  Cost: " + Cost);
         }
-
     }
-
 }
 

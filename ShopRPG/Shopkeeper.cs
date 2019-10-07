@@ -101,62 +101,84 @@ namespace ShopRPG
             int itemstat;
             int itemcost;
 
-
             Console.WriteLine("Debug Mode Activated\n");
-            while (choice != "back")
+            while (choice != "home")
             {
                 int debug = 0;
                 Console.WriteLine("Debug Mode (Active)");
-                Console.WriteLine("additem, addgold, back");
+                Console.WriteLine("additem, modifygold, home");
                 choice = Console.ReadLine();
                 if (choice == "additem")
                 {
-                    Console.WriteLine("weapon, armor");
-                    choice = Console.ReadLine();
-                    if (choice == "weapon")
+                    while (choice != "back")
                     {
-                        Console.WriteLine("\nGive the new item a name.");
-                        itemname = Console.ReadLine();
-                        Console.WriteLine("\nGive the new item an Attack stat.");
-                        itemstat = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("\nGive the new item a price.");
-                        itemcost = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("\nGive the new item a description.");
-                        itemDesc = Console.ReadLine();
+                        Console.WriteLine("weapon, armor, back");
+                        choice = Console.ReadLine();
+                        if (choice == "weapon")
+                        {
+                            Console.WriteLine("\nGive the new item a name.");
+                            itemname = Console.ReadLine();
+                            Console.WriteLine("\nGive the new item an Attack stat.");
+                            itemstat = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("\nGive the new item a price.");
+                            itemcost = Convert.ToInt32(Console.ReadLine());
+                            while (itemcost < 0)
+                            {
+                                Console.WriteLine("No negative item cost boy. Try Again.");
+                                itemcost = Convert.ToInt32(Console.ReadLine());
+                            }
+                            Console.WriteLine("\nGive the new item a description.");
+                            itemDesc = Console.ReadLine();
 
-                        Console.WriteLine("Your new item has been added to the shop.\n");
-                        Console.ReadKey();
+                            Console.WriteLine("Your new item has been added to the shop.\n");
+                            Console.ReadKey();
 
-                        item = new AttackItem(itemname, itemstat, itemcost, itemDesc);
-                        shopInv.Add(item);
+                            item = new AttackItem(itemname, itemstat, itemcost, itemDesc);
+                            shopInv.Add(item);
+                            choice = "back";
+                        }
+                        else if (choice == "armor")
+                        {
+                            Console.WriteLine("\nGive the new item a name.");
+                            itemname = Console.ReadLine();
+                            Console.WriteLine("\nGive the new item an Defense stat.");
+                            itemstat = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("\nGive the new item a price.");
+                            itemcost = Convert.ToInt32(Console.ReadLine());
+                            while (itemcost < 0)
+                            {
+                                Console.WriteLine("No negative item cost boy.");
+                            }
+                            Console.WriteLine("\nGive the new item a description.");
+                            itemDesc = Console.ReadLine();
+
+                            Console.WriteLine("Your new item has been added to the shop.\n");
+                            Console.ReadKey();
+
+                            item = new DefenseItem(itemname, itemstat, itemcost, itemDesc);
+                            shopInv.Add(item);
+                            choice = "back";
+                        }
+                        else if (choice == "home")
+                        {
+
+                        }
                     }
-                    else if (choice == "armor")
-                    {
-                        Console.WriteLine("\nGive the new item a name.");
-                        itemname = Console.ReadLine();
-                        Console.WriteLine("\nGive the new item an Defense stat.");
-                        itemstat = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("\nGive the new item a price.");
-                        itemcost = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("\nGive the new item a description.");
-                        itemDesc = Console.ReadLine();
-
-                        Console.WriteLine("Your new item has been added to the shop.\n");
-                        Console.ReadKey();
-
-                        item = new DefenseItem(itemname, itemstat, itemcost, itemDesc);
-                        shopInv.Add(item);
-                    }
-
                 }
-                else if (choice == "addgold")
+                else if (choice == "modifygold")
                 {
-                    Console.WriteLine("How much player gold will you give?");
+                    Console.WriteLine("How much player gold will you add/remove?");
                     debug = Convert.ToInt32(Console.ReadLine());
                     player.getDatMoney += debug;
-                    Console.WriteLine("You have given yourself " + debug + " gold.\n");
+                    Console.WriteLine("You have given yourself " + debug + " gold.");
+                    if (player.getDatMoney <= 0)
+                    {
+                        Console.WriteLine("Money set automatically to zero.");
+                        player.getDatMoney = 0;
+                    }
+                    Console.WriteLine(" ");
                 }
-                else if (choice == "back")
+                else if (choice == "home")
                 {
                     Console.WriteLine("Now returning to main menu.\n");
                 }
@@ -172,7 +194,6 @@ namespace ShopRPG
         {
             shopInv.ShopLoad(shopInventorySave, shopInv, this);
         }
-
     }
 }
 

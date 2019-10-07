@@ -10,7 +10,6 @@ namespace ShopRPG
     class Player
     {
         Inventory playerInv = new Inventory();
-
         private int playerMoney = 1000;
         public int _potionHeld = 0;
 
@@ -61,7 +60,6 @@ namespace ShopRPG
             playerInv.Remove(index);
             shopkeeper.Add(temp);
             return true;
-
         }
 
         // Player Inventory Save
@@ -80,7 +78,5 @@ namespace ShopRPG
         {
             return playerInv.GetLength();
         }
-
-
     }
 }
