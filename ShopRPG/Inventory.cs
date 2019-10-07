@@ -97,10 +97,10 @@ namespace ShopRPG
                 {
                     shopSave.WriteLine("Armor");
                 }
-                shopSave.WriteLine(i.GetName());
-                shopSave.WriteLine(i.GetItemStat());
-                shopSave.WriteLine(i.GetCost());
-                shopSave.WriteLine(i.GetDescription());
+                shopSave.WriteLine(i.Name);
+                shopSave.WriteLine(i.Stats);
+                shopSave.WriteLine(i.Cost);
+                shopSave.WriteLine(i.Description);
             }
             shopSave.WriteLine(" ");
             // Closes it
@@ -113,6 +113,7 @@ namespace ShopRPG
             AllItem[] itemSave = GetItemList();
 
             playerSave.WriteLine(player.getDatMoney);
+            playerSave.WriteLine(player._potionHeld);
             foreach (AllItem i in itemSave)
             {
                 if (i is AttackItem)
@@ -123,10 +124,10 @@ namespace ShopRPG
                 {
                     playerSave.WriteLine("Armor");
                 }
-                playerSave.WriteLine(i.GetName());
-                playerSave.WriteLine(i.GetItemStat());
-                playerSave.WriteLine(i.GetCost());
-                playerSave.WriteLine(i.GetDescription());
+                playerSave.WriteLine(i.Name);
+                playerSave.WriteLine(i.Stats);
+                playerSave.WriteLine(i.Cost);
+                playerSave.WriteLine(i.Description);
             }
             playerSave.WriteLine(" ");
             // Closes it
@@ -201,6 +202,7 @@ namespace ShopRPG
                 Clear();
                 StreamReader playerSaveLoad = File.OpenText(playerInventorySave);
                 player.getDatMoney = Convert.ToInt32(playerSaveLoad.ReadLine());
+                player._potionHeld = Convert.ToInt32(playerSaveLoad.ReadLine());
                 while (loading)
                 {
                     loading = false;

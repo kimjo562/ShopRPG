@@ -71,16 +71,16 @@ namespace ShopRPG
         {
             AllItem temp = shopInv[index];
 
-            if (player.getDatMoney /* watchItBurn */ < temp.GetCost())
+            if (player.getDatMoney /* watchItBurn */ < temp.Cost)
             {
                 // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
                 temp.Print();
                 return false;
             }
             //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
-            Console.WriteLine("You have sucessfully bought " + temp.GetName() + " from the shop.");
-            player.getDatMoney -= temp.GetCost();
-            getShopMoney += temp.GetCost();
+            Console.WriteLine("You have sucessfully bought " + temp.Name + " from the shop.");
+            player.getDatMoney -= temp.Cost;
+            getShopMoney += temp.Cost;
             shopInv.Remove(index);
             player.Add(temp);
             return true;

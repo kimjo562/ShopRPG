@@ -11,13 +11,11 @@ namespace ShopRPG
     {
         Inventory playerInv = new Inventory();
 
-        private string _name = " ";
         private int playerMoney = 1000;
         public int _potionHeld = 0;
 
-        public Player(string name)                                                      // Constructor What makes player a player.
+        public Player()                                                      // Constructor What makes player a player.
         {
-            _name = name;
             playerInv.Add(new AttackItem("Yeet Sword", 1337, 420, "LeetYeetSwordBoi"));
         }
 
@@ -50,16 +48,16 @@ namespace ShopRPG
         {
             AllItem temp = playerInv[index];
 
-            if (shopkeeper.getShopMoney /* watchItBurn */ < temp.GetCost())
+            if (shopkeeper.getShopMoney /* watchItBurn */ < temp.Cost)
             {
                 // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
                 temp.Print();
                 return false;
             }
             //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (SHOPKEEPER BUYING FROM player))
-            Console.WriteLine("You have sucessfully sold " + temp.GetName() + " from your bag.");
-            getDatMoney += temp.GetCost();
-            shopkeeper.getShopMoney -= temp.GetCost();
+            Console.WriteLine("You have sucessfully sold " + temp.Name + " from your bag.");
+            getDatMoney += temp.Cost;
+            shopkeeper.getShopMoney -= temp.Cost;
             playerInv.Remove(index);
             shopkeeper.Add(temp);
             return true;

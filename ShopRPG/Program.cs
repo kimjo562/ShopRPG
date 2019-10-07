@@ -11,7 +11,7 @@ namespace ShopRPG
     {                                                                                                                                               // class Program Bracket
         static void Main(string[] args)
         {                                                                                                                                           //static void Main Bracket
-            Player player = new Player("TesterBoi");
+            Player player = new Player();
             Shopkeeper shopkeeper = new Shopkeeper();
 
             string choice = "";

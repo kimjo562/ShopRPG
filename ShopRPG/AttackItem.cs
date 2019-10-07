@@ -18,34 +18,36 @@ namespace ShopRPG
 
         }
 
-        public int GetItemDamage()
-        {
-            return _stat;
-        }
         public int ItemDamage
         {
+            get
+            {
+                return _stat;
+            }
             set
             {
                 _stat = value;
             }
         }
-        public override int GetCost()
-        {
-            return _cost;
-        }
+
         public override int Cost
         {
+            get
+            {
+                return _cost;
+            }
             set
             {
                 _cost = value;
             }
         }
-        public override string GetDescription()
-        {
-            return _description;
-        }
+
         public override string Description
         {
+            get
+            {
+                return _description;
+            }
             set
             {
                 _description = value;
@@ -54,7 +56,7 @@ namespace ShopRPG
 
         public override void Print()
         {
-            Console.WriteLine("\n  Name: " + GetName() + "\n  Defense: " + GetItemDamage() + "\n  Description: " + GetDescription() + "\n  Cost: " + GetCost());
+            Console.WriteLine("\n  Name: " + Name + "\n  Defense: " + ItemDamage + "\n  Description: " + Description + "\n  Cost: " + Cost);
         }
 
     }

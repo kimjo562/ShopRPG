@@ -17,63 +17,54 @@ namespace ShopRPG
         {
 
         }
-        public string GetName()
-        {
-            return _name;
-        }
+
         public virtual string Name
         {
+            get
+            {
+                return _name;
+            }
             set
             {
                 _name = value;
             }
         }
 
-        public virtual string GetDescription()
-        {
-            return _description;
-        }
         public virtual string Description
         {
+            get
+            {
+                return _description;
+            }
             set
             {
                 _description = value;
             }
         }
 
-        public virtual int GetCost()
-        {
-            return _cost;
-        }
         public virtual int Cost
         {
+            get
+            {
+                return _cost;
+            }
             set
             {
                 _cost = value;
             }
         }
 
-        public virtual int GetItemStat()
-        {
-            return _stat;
-        }
         public virtual int Stats
         {
+            get
+            {
+                return _stat;
+            }
             set
             {
                 _stat = value;
             }
         }
-
-        public void Load(string name, int stat, int cost, string desc)
-        {
-            _name = name;
-            _stat = stat;
-            _cost = cost;
-            _description = desc;
-
-        }
-
 
     }
 }
