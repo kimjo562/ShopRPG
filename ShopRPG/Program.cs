@@ -98,102 +98,106 @@ namespace ShopRPG
                     if (choice == "1")
                     {
                         int subChoice;
-                        Console.WriteLine("What would you like to buy?");
-                        Console.WriteLine("1.) Weapon / Armor    2.) Potions    0.)Back");
-                        choice = Console.ReadLine();
-                        if (choice == "1")
+                        while (choice != "0")
                         {
-                            if (shopkeeper.GetLength() > 0)
+                            Console.WriteLine("What would you like to buy?");
+                            Console.WriteLine("1.) Weapon / Armor    2.) Potions    0.)Back");
+                            choice = Console.ReadLine();
+                            if (choice == "1")
                             {
-                                // Add Array of Shop Weapons here.
-                                shopkeeper.PrintList();
-                                Console.WriteLine("Here are your weapon choices.");
-                                subChoice = Convert.ToInt32(Console.ReadLine());
-
-                                // When player buys item from List  (Number: Dictates the Index Array Number)
-                                if (shopkeeper.SellingItem(subChoice - 1, player))
+                                if (shopkeeper.GetLength() > 0)
                                 {
-                                    Console.WriteLine("");
+                                    // Add Array of Shop Weapons here.
+                                    shopkeeper.PrintList();
+                                    Console.WriteLine("Here are your weapon choices.");
+                                    subChoice = Convert.ToInt32(Console.ReadLine());
 
+                                    // When player buys item from List  (Number: Dictates the Index Array Number)
+                                    if (shopkeeper.SellingItem(subChoice - 1, player))
+                                    {
+                                        Console.WriteLine("");
+
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("You don't have enough money to buy this");
+                                    }
+                                    Console.ReadKey();
                                 }
                                 else
                                 {
-                                    Console.WriteLine("You don't have enough money to buy this");
+                                    Console.WriteLine("But the shopkeeper has nothing left.");
                                 }
-                                Console.ReadKey();
                             }
-                            else
+                            else if (choice == "2")
                             {
-                                Console.WriteLine("But the shopkeeper has nothing left.");
+                                Console.WriteLine("How many potions would you like to buy?");
+                                int potionAmount = Convert.ToInt32(Console.ReadLine());
+
+                                if (player.getDatMoney > 250 * potionAmount)
+                                {
+                                    // How many you want to buy = respective price.
+                                    player.getDatMoney -= 250 * potionAmount;
+                                    shopkeeper.getShopMoney += 250 * potionAmount;
+                                    Console.WriteLine("You have bought " + potionAmount + " and it costed you " + potionAmount * 250 + " gold.\n");
+
+                                    // Add Potions amount into Player Inventory.
+                                    player._potionHeld += potionAmount;
+                                }
+                                else if (player.getDatMoney < 250 * potionAmount)
+                                {
+                                    Console.WriteLine("You're short on gold you pleb.");
+                                    Console.WriteLine("Try again when you have more gold.\n");
+                                    Console.ReadKey();
+                                }
+
+                            }
+                            else if (choice != "0")
+                            {
+
+
                             }
                         }
-                        else if (choice == "2")
-                        {
-                            Console.WriteLine("How many potions would you like to buy?");
-                            int potionAmount = Convert.ToInt32(Console.ReadLine());
-
-                            if (player.getDatMoney > 250 * potionAmount)
-                            {
-                                // How many you want to buy = respective price.
-                                player.getDatMoney -= 250 * potionAmount;
-                                shopkeeper.getShopMoney += 250 * potionAmount;
-                                Console.WriteLine("You have bought " + potionAmount + " and it costed you " + potionAmount * 250 + " gold.\n");
-
-                                // Add Potions amount into Player Inventory.
-                                player._potionHeld += potionAmount;
-                            }
-                            else if (player.getDatMoney < 250 * potionAmount)
-                            {
-                                Console.WriteLine("You're short on gold you pleb.");
-                                Console.WriteLine("Try again when you have more gold.\n");
-                                Console.ReadKey();
-                            }
-
-                        }
-                        else if (choice != "0")
-                        {
-
-
-                        }
-
                     }
                     else if (choice == "2")
                     {
-                        Console.WriteLine("What would you like to sell?");
-                        Console.WriteLine("1.) Weapon / Armor    0.)Back");
-                        choice = Console.ReadLine();
-                        if (choice == "1")
+                        while (choice != "0")
                         {
-                            if (player.GetLength() > 0)
+                            Console.WriteLine("What would you like to sell?");
+                            Console.WriteLine("1.) Weapon / Armor    0.)Back");
+                            choice = Console.ReadLine();
+                            if (choice == "1")
                             {
-                                int subChoice;
-                                player.PrintList();
-                                Console.WriteLine("Here are your items you have.");
-                                subChoice = Convert.ToInt32(Console.ReadLine());
-
-                                // Get Player Inventory List
-                                if (player.BuyingItem(subChoice - 1, shopkeeper))
+                                if (player.GetLength() > 0)
                                 {
-                                    Console.WriteLine("");
+                                    int subChoice;
+                                    player.PrintList();
+                                    Console.WriteLine("Here are your items you have.");
+                                    subChoice = Convert.ToInt32(Console.ReadLine());
+
+                                    // Get Player Inventory List
+                                    if (player.BuyingItem(subChoice - 1, shopkeeper))
+                                    {
+                                        Console.WriteLine("");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("The shop doesn't have enough money to buy this");
+                                    }
+                                    Console.ReadKey();
                                 }
                                 else
                                 {
-                                    Console.WriteLine("The shop doesn't have enough money to buy this");
+                                    Console.WriteLine("\nYou don't have anything to sell -.-\n");
                                 }
-                                Console.ReadKey();
+
                             }
-                            else
+                            else if (choice != "0")
                             {
-                                Console.WriteLine("\nYou don't have anything to sell -.-\n");
+
+
                             }
-
                         }
-                        else if (choice != "0")
-                        {
-
-
-                        }
-
                     }
                     else if (choice == "3")
                     {
