@@ -152,7 +152,7 @@ namespace ShopRPG
                 {
                     loading = false;
                     temp = ShopSaveLoad.ReadLine();
-                    if (temp != " ")
+                    if (temp != null)
                     {
                         loading = true;
                         name = (ShopSaveLoad.ReadLine());
@@ -203,7 +203,7 @@ namespace ShopRPG
                 {
                     loading = false;
                     temp = playerSaveLoad.ReadLine();
-                    if (temp != " ")
+                    if (temp != null)
                     {
                         loading = true;
                         name = (playerSaveLoad.ReadLine());

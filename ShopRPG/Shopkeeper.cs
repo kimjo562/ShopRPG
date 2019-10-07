@@ -69,21 +69,27 @@ namespace ShopRPG
 
         public bool SellingItem(int index, Player player)
         {
-            AllItem temp = shopInv[index];
-
-            if (player.getDatMoney /* watchItBurn */ < temp.Cost)
+            if (index < shopInv.GetLength() && index >= 0)
             {
-                // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
-                temp.Print();
+                AllItem temp = shopInv[index];
+                if (player.getDatMoney /* watchItBurn */ < temp.Cost)
+                {
+                    // If the Player doesn't have enough funds, tell player you cannot and nothing happens.
+                    temp.Print();
+                    return false;
+                }
+                //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
+                Console.WriteLine("You have sucessfully bought " + temp.Name + " from the shop.");
+                player.getDatMoney -= temp.Cost;
+                getShopMoney += temp.Cost;
+                shopInv.Remove(index);
+                player.Add(temp);
+                return true;
+            }
+            else
+            {
                 return false;
             }
-            //player buys item (create BUY function which will be your logic for buying (lose money giving item ect.  (PLAYER BUYING FROM Shopkeeper))
-            Console.WriteLine("You have sucessfully bought " + temp.Name + " from the shop.");
-            player.getDatMoney -= temp.Cost;
-            getShopMoney += temp.Cost;
-            shopInv.Remove(index);
-            player.Add(temp);
-            return true;
         }
 
         public int GetLength()
@@ -120,6 +126,11 @@ namespace ShopRPG
                             itemname = Console.ReadLine();
                             Console.WriteLine("\nGive the new item an Attack stat.");
                             itemstat = Convert.ToInt32(Console.ReadLine());
+                            while (itemstat < 0)
+                            {
+                                Console.WriteLine("No negative item damage boy. Try Again.");
+                                itemstat = Convert.ToInt32(Console.ReadLine());
+                            }
                             Console.WriteLine("\nGive the new item a price.");
                             itemcost = Convert.ToInt32(Console.ReadLine());
                             while (itemcost < 0)
@@ -143,6 +154,11 @@ namespace ShopRPG
                             itemname = Console.ReadLine();
                             Console.WriteLine("\nGive the new item an Defense stat.");
                             itemstat = Convert.ToInt32(Console.ReadLine());
+                            while (itemstat < 0)
+                            {
+                                Console.WriteLine("No negative item defense boy. Try Again.");
+                                itemstat = Convert.ToInt32(Console.ReadLine());
+                            }
                             Console.WriteLine("\nGive the new item a price.");
                             itemcost = Convert.ToInt32(Console.ReadLine());
                             while (itemcost < 0)

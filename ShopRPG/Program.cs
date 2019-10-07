@@ -120,13 +120,13 @@ namespace ShopRPG
                                     }
                                     else
                                     {
-                                        Console.WriteLine("You don't have enough money to buy this");
+                                        Console.WriteLine("You don't have enough money to buy this or you made an invalid choice.");
                                     }
                                     Console.ReadKey();
                                 }
                                 else
                                 {
-                                    Console.WriteLine("But the shopkeeper has nothing left.");
+                                    Console.WriteLine("\nBut the shopkeeper has nothing left.\n");
                                 }
                             }
                             else if (choice == "2")
@@ -182,7 +182,7 @@ namespace ShopRPG
                                     }
                                     else
                                     {
-                                        Console.WriteLine("The shop doesn't have enough money to buy this");
+                                        Console.WriteLine("The shop doesn't have enough money to buy this, or you made an invalid choice.");
                                     }
                                     Console.ReadKey();
                                 }
